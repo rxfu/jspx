@@ -15,8 +15,8 @@ $env = $app->detectEnvironment(function () {
 	$appEnv  = trim(file_get_contents($envPath));
 	if (file_exists($envPath)) {
 		putenv($appEnv);
-		if (getenv('APP_ENV') && file_exists(__DIR__ . '../.' . getenv('APP_ENV') . '.env')) {
-			Dotenv::load(__DIR__ . '../.' . getenv('APP_ENV') . '.env');
+		if (getenv('APP_ENV') && file_exists(__DIR__ . '/../.' . getenv('APP_ENV') . '.env')) {
+			Dotenv::load(__DIR__ . '/../', '.' . getenv('APP_ENV') . '.env');
 		}
 	}
 });
