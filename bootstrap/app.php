@@ -9,10 +9,10 @@
 | which serves as the "glue" for all the components of Laravel, and is
 | the IoC container for the system binding all of the various parts.
 |
-*/
+ */
 
 $app = new Illuminate\Foundation\Application(
-	realpath(__DIR__.'/../')
+	realpath(__DIR__ . '/../')
 );
 
 /*
@@ -24,7 +24,7 @@ $app = new Illuminate\Foundation\Application(
 | we will be able to resolve them when needed. The kernels serve the
 | incoming requests to this application from both the web and CLI.
 |
-*/
+ */
 
 $app->singleton(
 	'Illuminate\Contracts\Http\Kernel',
@@ -43,6 +43,15 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
+| Load Environment File on Startup
+|--------------------------------------------------------------------------
+|
+| This will determine, which environment will be loaded for our application
+ */
+require __DIR__ . '/environment.php';
+
+/*
+|--------------------------------------------------------------------------
 | Return The Application
 |--------------------------------------------------------------------------
 |
@@ -50,6 +59,6 @@ $app->singleton(
 | the calling script so we can separate the building of the instances
 | from the actual running of the application and sending responses.
 |
-*/
+ */
 
 return $app;
