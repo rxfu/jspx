@@ -19,7 +19,7 @@ class CreatePjbzTable extends Migration {
 			$table->text('ms')->nullable();
 			$table->integer('px')->default(0);
 			$table->integer('pjzb_id');
-			$table->string('zt')->default('1');
+			$table->string('zt', 1)->default('1');
 			$table->timestamps();
 
 			$table->foreign('pjzb_id')->references('id')->on('pjzb')->onDelete('cascade')->onUpdate('cascade');
