@@ -6,9 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateGroupPermissionTable' => $baseDir . '/database/migrations/2015_11_17_101620_create_group_permission_table.php',
+    'CreateGroupTable' => $baseDir . '/database/migrations/2015_11_17_100555_create_group_table.php',
+    'CreatePermissionTable' => $baseDir . '/database/migrations/2015_11_17_101500_create_permission_table.php',
+    'CreatePfdjTable' => $baseDir . '/database/migrations/2015_11_17_105647_create_pfdj_table.php',
+    'CreatePfjgTable' => $baseDir . '/database/migrations/2015_11_17_110128_create_pfjg_table.php',
+    'CreatePjbzTable' => $baseDir . '/database/migrations/2015_11_17_105245_create_pjbz_table.php',
+    'CreatePjzbTable' => $baseDir . '/database/migrations/2015_11_17_104833_create_pjzb_table.php',
+    'CreateUserGroupTable' => $baseDir . '/database/migrations/2015_11_17_100728_create_user_group_table.php',
     'CreateUserTable' => $baseDir . '/database/migrations/2015_11_16_170617_create_user_table.php',
-    'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Facade.php',
@@ -425,4 +431,5 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
+    'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );
