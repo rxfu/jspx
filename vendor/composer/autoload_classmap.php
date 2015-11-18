@@ -19,6 +19,7 @@ return array(
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Factory.php',
+    'GroupTableSeeder' => $baseDir . '/database/seeds/GroupTableSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
@@ -431,5 +432,6 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
+    'UserGroupTableSeeder' => $baseDir . '/database/seeds/UserGroupTableSeeder.php',
     'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );
