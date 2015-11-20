@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UserGroupTableSeeder');
 		$this->call('PermissionTableSeeder');
 		$this->call('GroupPermissionTableSeeder');
+		$this->call('PjzbTableSeeder');
+		$this->call('PjbzTableSeeder');
 	}
 
 }
