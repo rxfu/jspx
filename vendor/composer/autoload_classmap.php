@@ -396,6 +396,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PermissionTableSeeder' => $baseDir . '/database/seeds/PermissionTableSeeder.php',
+    'PfdjTableSeeder' => $baseDir . '/database/seeds/PfdjTableSeeder.php',
     'PjbzTableSeeder' => $baseDir . '/database/seeds/PjbzTableSeeder.php',
     'PjzbTableSeeder' => $baseDir . '/database/seeds/PjzbTableSeeder.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',

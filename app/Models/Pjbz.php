@@ -10,4 +10,8 @@ class Pjbz extends Model {
 		return $this->belongsTo('Pjzb');
 	}
 
+	public function pfjgs() {
+		return $this->hasMany('Pfjg');
+	}
+
 }
