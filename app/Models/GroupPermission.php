@@ -4,6 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupPermission extends Model {
 
-	//
+	protected $table = 'group_permission';
+
+	public $timestamps = false;
+
+	protected $primaryKey = 'group_id';
 
 }
