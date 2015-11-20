@@ -6,7 +6,7 @@ class UserGroup extends Model {
 
 	protected $table = 'user_group';
 
-	protected $primaryKey = ['user_id', 'group_id'];
+	protected $primaryKey = 'user_id';
 
 	public $timestamps = false;
 
