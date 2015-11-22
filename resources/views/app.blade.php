@@ -198,7 +198,7 @@
                     <h1 class="page-header">{{ $title }}</h1>
                 </div>
             </div>
-            @yield('content')            
+            @yield('content')
         </div>
 
     	<footer class="footer">
