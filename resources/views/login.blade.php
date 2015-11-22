@@ -33,7 +33,7 @@
                         <h3 class="panel-title">登录</h3>
                     </div>
                     <div class="panel-body">
-                        @if (count($errors) > 0)
+                        @if ($errors->any())
                             <div class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <strong>注意：</strong>输入有问题！
@@ -44,7 +44,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form id="login" name="login" method="post" action="{{ url('/auth/login') }}" role="form" class="form-horizontal">
+                        <form id="login" name="login" method="POST" action="{{ url('/auth/login') }}" role="form" class="form-horizontal">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
