@@ -8,16 +8,16 @@
     <meta name="keywords" content="采集数据,本科教学,教学状态数据">
     <meta name="author" content="Fu Rongxin,符荣鑫">
 	<title>广西师范大学教师评学系统 - 登录</title>
-	{{ HTML::style('css/bootstrap.min.css') }}
-    {{ HTML::style('css/bootstrap-theme.min.css') }}
-    {{ HTML::style('font-awesome/css/font-awesome.min.css') }}
-    {{ HTML::style('css/sb-admin.css') }}
-    {{ HTML::style('css/style.css') }}
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/sb-admin.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      {{ HTML::script('js/html5shiv.js') }}
-      {{ HTML::script('js/respond.min.js') }}
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -68,17 +68,17 @@
                         </form>
                     </div>
                     <div class="panel-footer">
-                        &copy; {{ (date('Y') == '2015') ? '2015' : '2015 - ' . date('Y') }} {{ HTML::link('http://www.dean.gxnu.edu.cn', '广西师范大学教务处') }}.保留所有权利.
+                        &copy; {{ (date('Y') == '2015') ? '2015' : '2015 - ' . date('Y') }} <a href="http://www.dean.gxnu.edu.cn" title="广西师范大学教务处">广西师范大学教务处</a>.保留所有权利.
                     </div>
                 </div>
             </div>
         </div>
     </div>
 	<!-- Load JS here for greater good -->
-    {{ HTML::script('js/jquery-1.11.0.min.js') }}
-    {{ HTML::script('js/bootstrap.min.js') }}
-    {{ HTML::script('js/jquery.placeholder.js') }}
-    {{ HTML::script('js/plugins/metisMenu/jquery.metisMenu.js') }}
-    {{ HTML::script('js/sb-admin.js') }}
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/sb-admin.js"></script>
 </body>
 </html>
