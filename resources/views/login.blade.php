@@ -44,27 +44,28 @@
                                 </ul>
                             </div>
                         @endif
-                        {{ Form::open(array('route' => 'login', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
+                        <form id="login" name="login" method="post" action="{{ url('/auth/login') }}" role="form" class="form-horizontal">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {{ Form::label('username', '用户名', array('class' => 'col-md-3 control-label')) }}
+                                    <label for="username" class="col-md-3 control-label">用户名</label>
                                     <div class="col-md-9">
-                                        {{ Form::text('username', Input::old('username'), array('class' => 'form-control', 'placeholder' => '用户名', 'autofocus' => 'autofocus')) }}
+                                        <input type="text" name="username" id="username" class="form-control" placeholder="用户名" value="{{ old('username') }}" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {{ Form::label('password', '密码', array('class' => 'col-md-3 control-label')) }}
+                                    <label for="password" class="col-md-3 control-label">密码</label>
                                     <div class="col-md-9">
-                                        {{ Form::password('password', array('class' => 'form-control', 'placeholder' => '密码')) }}
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="密码">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-4 col-md-offset-4">
-                                        {{ Form::button('登录', array('type' => 'submit', 'class' =>'btn btn-success btn-block')) }}
+                                        <input type="submit" value="登录" class="btn btn-success btn-block">
                                     </div>
                                 </div>
                             </fieldset>
-                        {{ Form::close() }}
+                        </form>
                     </div>
                     <div class="panel-footer">
                         &copy; {{ (date('Y') == '2015') ? '2015' : '2015 - ' . date('Y') }} {{ HTML::link('http://www.dean.gxnu.edu.cn', '广西师范大学教务处') }}.保留所有权利.
