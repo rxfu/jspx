@@ -7,7 +7,7 @@
     <meta name="description" content="采集广西师范大学二级学院本科教学状态数据">
     <meta name="keywords" content="采集数据,本科教学,教学状态数据">
     <meta name="author" content="Fu Rongxin,符荣鑫">
-	<title>广西师范大学教师评学系统 - {{ $title }}</title>
+	<title>广西师范大学教师评学系统 - 登录</title>
 	{{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-theme.min.css') }}
     {{ HTML::style('font-awesome/css/font-awesome.min.css') }}
@@ -30,13 +30,18 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ $title }}</h3>
+                        <h3 class="panel-title">登录</h3>
                     </div>
                     <div class="panel-body">
-                        @if (Session::has('flash_error'))
-                            <div id="flash_error" class="alert alert-danger alert-dismissable">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                {{ Session::get('flash_error') }}
+                                <strong>注意：</strong>输入有问题！
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
                         {{ Form::open(array('route' => 'login', 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal')) }}
