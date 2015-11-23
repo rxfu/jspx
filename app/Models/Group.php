@@ -13,7 +13,7 @@ class Group extends Model {
 	}
 
 	public function permissions() {
-		return $this->belongsToMany('App\Models\Group', 'group_permssion');
+		return $this->belongsToMany('App\Models\Permission', 'group_permission');
 	}
 
 }

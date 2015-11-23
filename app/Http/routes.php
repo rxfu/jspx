@@ -16,13 +16,6 @@ Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
-	'auth'       => 'Auth\AuthController',
-	'password'   => 'Auth\PasswordController',
-	'user'       => 'UserController',
-	'group'      => 'GroupController',
-	'permission' => 'PermissionController',
-	'pjzb'       => 'PjzbController',
-	'pjbz'       => 'PjbzController',
-	'pfdj'       => 'PfdjController',
-	'pfjg'       => 'PfjgController',
+	'auth'     => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
 ]);

@@ -8,18 +8,33 @@ class GroupTableSeeder extends Seeder {
 	public function run() {
 		DB::statement('TRUNCATE TABLE t_px_group CASCADE');
 
-		Group::create(array(
+		$group = Group::create(array(
 			'name' => '超级管理员',
 		));
-		Group::create(array(
+		$group->permissions()->sync([
+			'user.add', 'user.edit', 'user.show', 'user.list', 'user.save', 'user.update', 'user.delete', 'user.reset', 'user.change', 'user.saveChange', 'user.profile',
+			'group.add', 'group.edit', 'group.show', 'group.list', 'group.save', 'group.update', 'group.delete', 'group.grant', 'group.saveGrant',
+			'permission.add', 'permission.edit', 'permission.show', 'permission.list', 'permission.save', 'permission.update', 'permission.delete',
+			'pjzb.add', 'pjzb.edit', 'pjzb.show', 'pjzb.list', 'pjzb.save', 'pjzb.update', 'pjzb.delete',
+			'pjbz.add', 'pjbz.edit', 'pjbz.show', 'pjbz.list', 'pjbz.save', 'pjbz.update', 'pjbz.delete',
+			'pfdj.add', 'pfdj.edit', 'pfdj.show', 'pfdj.list', 'pfdj.save', 'pfdj.update', 'pfdj.delete',
+			'pfjg.monitor', 'pfjg.statistics', 'pfjg.compare', 'pfjg.exportMonitor', 'pfjg.exportStatistics', 'pfjg.exportDepartmentStatistics', 'pfjg.exportMajorStatistics',
+		]);
+
+		$group = Group::create(array(
 			'name' => '年级辅导员',
 		));
-		Group::create(array(
+		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.exportMajorStatistics']);
+
+		$group = Group::create(array(
 			'name' => '教学秘书',
 		));
-		Group::create(array(
+		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.exportDepartmentStatistics']);
+
+		$group = Group::create(array(
 			'name' => '学校领导',
 		));
+		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.exportStatistics']);
 	}
 
 }

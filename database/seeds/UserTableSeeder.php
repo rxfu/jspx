@@ -8,7 +8,7 @@ class UserTableSeeder extends Seeder {
 	public function run() {
 		DB::statement('TRUNCATE TABLE t_px_user CASCADE');
 
-		User::create(array(
+		$user = User::create(array(
 			'username'      => 'admin',
 			'email'         => 'admin@test.com',
 			'password'      => Hash::make('admin888'),
@@ -16,7 +16,9 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '28',
 			'activated'     => '1',
 		));
-		User::create(array(
+		$user->groups()->sync([1]);
+
+		$user = User::create(array(
 			'username'      => 'tester01',
 			'email'         => 'tester01@test.com',
 			'password'      => Hash::make('tester'),
@@ -24,7 +26,9 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '01',
 			'activated'     => '0',
 		));
-		User::create(array(
+		$user->groups()->sync([2]);
+
+		$user = User::create(array(
 			'username'      => 'tester02',
 			'email'         => 'tester02@test.com',
 			'password'      => Hash::make('tester'),
@@ -32,7 +36,9 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '01',
 			'activated'     => '0',
 		));
-		User::create(array(
+		$user->groups()->sync([3]);
+
+		$user = User::create(array(
 			'username'      => 'tester03',
 			'email'         => 'tester03@test.com',
 			'password'      => Hash::make('tester'),
@@ -40,6 +46,7 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '20',
 			'activated'     => '0',
 		));
+		$user->groups()->sync([4]);
 	}
 
 }

@@ -13,7 +13,7 @@ class CreateGroupPermissionTable extends Migration {
 	public function up() {
 		Schema::create('group_permission', function (Blueprint $table) {
 			$table->integer('group_id');
-			$table->integer('permission_id');
+			$table->string('permission_id', 60);
 
 			$table->primary(['group_id', 'permission_id']);
 			$table->foreign('group_id')->references('id')->on('group')->onDelete('cascade')->onUpdate('cascade');
