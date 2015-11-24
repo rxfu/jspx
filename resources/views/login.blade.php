@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 website-name">
-                {{ HTML::image('images/logo_gxnu.png', 'Logo', array('width' => '450')) }}
+                <img src="images/logo_gxnu.png" alt="Logo" width="450">
                 <h1>广西师范大学教师评学系统</h1>
             </div>
             <div class="col-md-4 col-md-offset-4">

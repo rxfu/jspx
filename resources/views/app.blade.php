@@ -35,7 +35,7 @@
         				<span class="icon-bar"></span>
         				<span class="icon-bar"></span>
         			</button>
-                    <a href="{{ URL::route('home') }}" class="navbar-brand">广西师范大学教师评学系统</a>
+                    <a href="{{ route('home') }}" class="navbar-brand">广西师范大学教师评学系统</a>
                 </div>
 
                 <ul class="nav navbar-top-links navbar-right">
@@ -47,10 +47,10 @@
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="{{ URL::route('user.profile') }}"><i class="fa fa-user fa-fw"></i> 个人资料</a></li>
-                            <li><a href="{{ URL::route('user.change') }}"><i class="fa fa-gear fa-fw"></i> 修改密码</a></li>
+                            <li><a href="{{ route('user.profile') }}"><i class="fa fa-user fa-fw"></i> 个人资料</a></li>
+                            <li><a href="{{ route('user.change') }}"><i class="fa fa-gear fa-fw"></i> 修改密码</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ URL::route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
+                            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -59,7 +59,7 @@
                     <div class="sidebar-collapse">
                         <ul id="side-menu" class="nav">
                             <li>
-                                <a href="{{ URL::route('home') }}"><i class="fa fa-dashboard fa-fw"></i> 概况</a>
+                                <a href="{{ route('home') }}"><i class="fa fa-dashboard fa-fw"></i> 概况</a>
                             </li>
                             @if (Auth::user()->groups[0]->permissions->contains('index.statistics'))
                                 <li>
@@ -67,7 +67,7 @@
                                     <ul class="nav nav-second-level">
                                         @foreach ($indexdatas as $indexdata)
                                             <li>
-                                                <a href="{{ URL::route('index.statistics', $indexdata->year) }}">{{ $indexdata->year - 1 . '~' . $indexdata->year }}学年度统计表</a>
+                                                <a href="{{ route('index.statistics', $indexdata->year) }}">{{ $indexdata->year - 1 . '~' . $indexdata->year }}学年度统计表</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -79,17 +79,17 @@
                                     <ul class="nav nav-second-level">
                                         @if (Auth::user()->groups[0]->permissions->contains('category.list'))
                                             <li>
-                                                <a href="{{ URL::route('category.list') }}">评分指标管理</a>
+                                                <a href="{{ route('category.list') }}">评分指标管理</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('index.list'))
                                             <li>
-                                                <a href="{{ URL::route('index.list') }}">评分标准管理</a>
+                                                <a href="{{ route('index.list') }}">评分标准管理</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('index.monitor'))
                                             <li>
-                                                <a href="{{ URL::route('index.monitor') }}">评分监控</a>
+                                                <a href="{{ route('index.monitor') }}">评分监控</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -101,17 +101,17 @@
                                     <ul class="nav nav-second-level">
                                         @if (Auth::user()->groups[0]->permissions->contains('user.new'))
                                             <li>
-                                                <a href="{{ URL::route('user.new') }}">添加用户</a>
+                                                <a href="{{ route('user.new') }}">添加用户</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('user.list'))
                                             <li>
-                                                <a href="{{ URL::route('user.list') }}">用户列表</a>
+                                                <a href="{{ route('user.list') }}">用户列表</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('user.change'))
                                             <li>
-                                                <a href="{{ URL::route('user.change') }}">修改密码</a>
+                                                <a href="{{ route('user.change') }}">修改密码</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -123,12 +123,12 @@
                                     <ul class="nav nav-second-level">
                                         @if (Auth::user()->groups[0]->permissions->contains('group.new'))
                                             <li>
-                                                <a href="{{ URL::route('group.new') }}">添加组</a>
+                                                <a href="{{ route('group.new') }}">添加组</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('group.list'))
                                             <li>
-                                                <a href="{{ URL::route('group.list') }}">组列表</a>
+                                                <a href="{{ route('group.list') }}">组列表</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -140,12 +140,12 @@
                                     <ul class="nav nav-second-level">
                                         @if (Auth::user()->groups[0]->permissions->contains('permission.new'))
                                             <li>
-                                                <a href="{{ URL::route('permission.new') }}">添加权限</a>
+                                                <a href="{{ route('permission.new') }}">添加权限</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('permission.list'))
                                             <li>
-                                                <a href="{{ URL::route('permission.list') }}">权限列表</a>
+                                                <a href="{{ route('permission.list') }}">权限列表</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -157,12 +157,12 @@
                                     <ul class="nav nav-second-level">
                                         @if (Auth::user()->groups[0]->permissions->contains('setting.edit'))
                                             <li>
-                                                <a href="{{ URL::route('setting.edit') }}">采集设置</a>
+                                                <a href="{{ route('setting.edit') }}">采集设置</a>
                                             </li>
                                         @endif
                                         @if (Auth::user()->groups[0]->permissions->contains('system.edit'))
                                             <li>
-                                                <a href="{{ URL::route('system.edit') }}">系统设置</a>
+                                                <a href="{{ route('system.edit') }}">系统设置</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -173,7 +173,7 @@
                 </nav>
             </nav>
     	</header>
-        
+
         <div id="page-wrapper">
             @if (Session::has('flash_error'))
                 <div id="flash_error" class="alert alert-danger">
