@@ -7,6 +7,6 @@ class Pjzb extends Model {
 	protected $table = 'pjzb';
 
 	public function pjbzs() {
-		return $this->hasMany('Pjbz');
+		return $this->hasMany('App\Models\Pjbz');
 	}
 }

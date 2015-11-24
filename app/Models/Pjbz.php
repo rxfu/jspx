@@ -7,11 +7,11 @@ class Pjbz extends Model {
 	protected $table = 'pjbz';
 
 	public function pjzb() {
-		return $this->belongsTo('Pjzb');
+		return $this->belongsTo('App\Models\Pjzb');
 	}
 
 	public function pfjgs() {
-		return $this->hasMany('Pfjg');
+		return $this->hasMany('App\Models\Pfjg');
 	}
 
 }

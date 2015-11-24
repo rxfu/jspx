@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '28',
 			'activated'     => '1',
 		));
-		$user->groups()->sync([1]);
+		$user->groups()->sync([$user->id]);
 
 		$user = User::create(array(
 			'username'      => 'tester01',
@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '01',
 			'activated'     => '0',
 		));
-		$user->groups()->sync([2]);
+		$user->groups()->sync([$user->id]);
 
 		$user = User::create(array(
 			'username'      => 'tester02',
@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '01',
 			'activated'     => '0',
 		));
-		$user->groups()->sync([3]);
+		$user->groups()->sync([$user->id]);
 
 		$user = User::create(array(
 			'username'      => 'tester03',
@@ -46,7 +46,7 @@ class UserTableSeeder extends Seeder {
 			'department_id' => '20',
 			'activated'     => '0',
 		));
-		$user->groups()->sync([4]);
+		$user->groups()->sync([$user->id]);
 	}
 
 }

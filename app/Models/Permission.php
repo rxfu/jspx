@@ -9,7 +9,7 @@ class Permission extends Model {
 	public $timestamps = false;
 
 	public function groups() {
-		return $this->belongsToMay('App\Models\Group', 'group_permission');
+		return $this->belongsToMany('App\Models\Group', 'group_permission');
 	}
 
 }
