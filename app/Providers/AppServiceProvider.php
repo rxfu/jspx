@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -9,9 +10,10 @@ class AppServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function boot()
-	{
-		//
+	public function boot(Guard $auth) {
+		view()->composer('app', function ($view) use ($auth) {
+			$view->with('user', $auth->user());
+		});
 	}
 
 	/**
@@ -23,8 +25,7 @@ class AppServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
 			'App\Services\Registrar'
