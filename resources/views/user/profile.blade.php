@@ -1,4 +1,4 @@
-@extends('master')
+@extends('app')
 
 @section('content')
 	<div class="row">
@@ -9,7 +9,7 @@
 					<table class="table table-striped">
 						<tr>
 							<th class="col-md-4 text-right">所在部门：</th>
-							<td class="col-md-8 text-left">{{ $user->department->name }}</td>
+							<td class="col-md-8 text-left">{{ $user->department->mc }}</td>
 						</tr>
 						<tr>
 							<th class="col-md-4 text-right">Email：</th>
