@@ -8,20 +8,20 @@
     <meta name="keywords" content="采集数据,本科教学,教师评学">
     <meta name="author" content="Fu Rongxin,符荣鑫">
 	<title>广西师范大学教师评学系统 - {{ $title }}</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-select.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/plugins/dataTables/dataTables.bootstrap.css">
-    <link rel="stylesheet" href="css/plugins/morris/morris-0.4.3.min.css">
-    <link rel="stylesheet" href="css/plugins/timeline/timeline.css">
-    <link rel="stylesheet" href="css/sb-admin.css">
-    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/dataTables/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/morris/morris-0.4.3.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/timeline/timeline.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
+      <script src="{{ asset('js/html5shiv.js') }}"></script>
+      <script src="{{ asset('js/respond.min.js') }}"></script>
     <![endif]-->
 </head>
 <body>
@@ -206,21 +206,21 @@
     	</footer>
     </div>
 	<!-- Load JS here for greater good -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-paginator.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/bootstrap-typeahead.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="js/jquery.stacktable.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="js/plugins/morris/morris.js"></script>
-    <script src="js/sb-admin.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui-1.10.4.custom.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-paginator.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-switch.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-typeahead.js') }}"></script>
+    <script src="{{ asset('js/jquery.placeholder.js') }}"></script>
+    <script src="{{ asset('js/jquery.stacktable.js') }}"></script>
+    <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/morris/morris.js') }}"></script>
+    <script src="{{ asset('js/sb-admin.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
