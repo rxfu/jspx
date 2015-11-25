@@ -8,23 +8,23 @@
     <meta name="keywords" content="采集数据,本科教学,教学状态数据">
     <meta name="author" content="Fu Rongxin,符荣鑫">
 	<title>广西师范大学教师评学系统 - 登录</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sb-admin.css">
-    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
+      <script src="{{ asset('js/html5shiv.js') }}"></script>
+      <script src="{{ asset('js/respond.min.js') }}"></script>
     <![endif]-->
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12 website-name">
-                <img src="images/logo_gxnu.png" alt="Logo" width="450">
+                <img src="{{ asset('images/logo_gxnu.png') }}" alt="Logo" width="450">
                 <h1>广西师范大学教师评学系统</h1>
             </div>
             <div class="col-md-4 col-md-offset-4">
@@ -75,10 +75,10 @@
         </div>
     </div>
 	<!-- Load JS here for greater good -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/sb-admin.js"></script>
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.placeholder.js') }}"></script>
+    <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('js/sb-admin.js') }}"></script>
 </body>
 </html>
