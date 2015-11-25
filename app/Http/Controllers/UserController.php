@@ -1,6 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Group;
+use App\Models\User;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class UserController extends Controller {
 
@@ -10,25 +15,20 @@ class UserController extends Controller {
 	}
 
 	public function getList() {
+		$users = User::with('Department')->orderBy('id', 'asc')->get();
 
-		$title = '用户列表';
-		$users = User::with('Department')->orderBy('dw', 'asc')->get();
-
-		return View::make('user.list', array('title' => $title, 'users' => $users));
+		return view('user.list', ['title' => '用户列表', 'users' => $users]);
 	}
 
 	public function getAdd() {
+		$departments = Department::orderBy('mc', 'asc')->get();
+		$groups      = Group::orderBy('id', 'asc')->get();
 
-		$title       = '注册新用户';
-		$departments = Department::orderBy('name', 'asc')->lists('name', 'id');
-		$groups      = Group::orderBy('id', 'asc')->lists('name', 'id');
-
-		return View::make('user.new', array('title' => $title, 'departments' => $departments, 'groups' => $groups));
+		return view('user.add', array('title' => '注册新用户', 'departments' => $departments, 'groups' => $groups));
 	}
 
-	public function postSave() {
-
-		$data = Input::all();
+	public function postSave(Request $request) {
+		$data = $request->all();
 
 		$rules = array(
 			'username' => 'required|unique:users',
@@ -60,11 +60,9 @@ class UserController extends Controller {
 	}
 
 	public function getShow($id) {
+		$user = User::find($id);
 
-		$title = '用户详细信息';
-		$user  = User::find($id);
-
-		return View::make('user.show', array('title' => $title, 'user' => $user));
+		return view('user.show', ['title' => '用户详细信息', 'user' => $user]);
 	}
 
 	public function getEdit($id) {

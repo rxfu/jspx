@@ -61,6 +61,28 @@
                             <li>
                                 <a href="{{ route('home') }}"><i class="fa fa-dashboard fa-fw"></i> 概况</a>
                             </li>
+                            @if ($user->groups[0]->permissions->contains('user.add') || $user->groups[0]->permissions->contains('user.list') || $user->groups[0]->permissions->contains('user.change'))
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i> 用户管理<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        @if ($user->groups[0]->permissions->contains('user.add'))
+                                            <li>
+                                                <a href="{{ url('user/add') }}">添加用户</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('user.list'))
+                                            <li>
+                                                <a href="{{ url('user/list') }}">用户列表</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('user.change'))
+                                            <li>
+                                                <a href="{{ url('user/change') }}">修改密码</a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </nav>
@@ -79,6 +101,11 @@
                     </ul>
                 </div>
             @endif
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{ $title }}</h1>
+                </div>
+            </div>
             @yield('content')
         </div>
 
