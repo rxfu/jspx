@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pfjg extends Model {
 
-	protected $table = 'pfjg';
+	protected $table = 'px_pfjg';
 
 	public function pjbz() {
 		return $this->belongsTo('App\Models\Pjbz', 'pjbz_id');

@@ -71,7 +71,7 @@ return [
 			'username' => env('DB_USERNAME', 'forge'),
 			'password' => env('DB_PASSWORD', ''),
 			'charset'  => 'utf8',
-			'prefix'   => 't_px_',
+			'prefix'   => 't_',
 			'schema'   => 'public',
 		],
 

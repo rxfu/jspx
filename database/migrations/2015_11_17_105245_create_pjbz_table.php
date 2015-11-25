@@ -11,7 +11,7 @@ class CreatePjbzTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('pjbz', function (Blueprint $table) {
+		Schema::create('px_pjbz', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('xh', 20)->nullable();
 			$table->string('mc', 60);
@@ -22,7 +22,7 @@ class CreatePjbzTable extends Migration {
 			$table->string('zt', 1)->default('1');
 			$table->timestamps();
 
-			$table->foreign('pjzb_id')->references('id')->on('pjzb')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('pjzb_id')->references('id')->on('px_pjzb')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
@@ -32,7 +32,7 @@ class CreatePjbzTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('pjbz');
+		Schema::drop('px_pjbz');
 	}
 
 }

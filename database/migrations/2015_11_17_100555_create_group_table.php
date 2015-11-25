@@ -11,7 +11,7 @@ class CreateGroupTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('group', function (Blueprint $table) {
+		Schema::create('px_group', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name', 60);
 			$table->text('description')->nullable();
@@ -24,7 +24,7 @@ class CreateGroupTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('group');
+		Schema::drop('px_group');
 	}
 
 }

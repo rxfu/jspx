@@ -44,7 +44,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form id="login" name="login" method="POST" action="{{ url('/auth/login') }}" role="form" class="form-horizontal">
+                        <form id="login" name="login" method="POST" action="{{ url('auth/login') }}" role="form" class="form-horizontal">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">

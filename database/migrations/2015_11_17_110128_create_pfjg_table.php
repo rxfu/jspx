@@ -11,7 +11,7 @@ class CreatePfjgTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('pfjg', function (Blueprint $table) {
+		Schema::create('px_pfjg', function (Blueprint $table) {
 			$table->string('jsgh', 10);
 			$table->string('kcxh', 12);
 			$table->string('kch', 8);
@@ -25,7 +25,7 @@ class CreatePfjgTable extends Migration {
 			$table->timestamps();
 
 			$table->primary(['jsgh', 'kcxh', 'pjbz_id']);
-			$table->foreign('pjbz_id')->references('id')->on('pjbz')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('pjbz_id')->references('id')->on('px_pjbz')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
@@ -35,7 +35,7 @@ class CreatePfjgTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('pfjg');
+		Schema::drop('px_pfjg');
 	}
 
 }

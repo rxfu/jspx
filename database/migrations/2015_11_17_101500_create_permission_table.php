@@ -11,7 +11,7 @@ class CreatePermissionTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('permission', function (Blueprint $table) {
+		Schema::create('px_permission', function (Blueprint $table) {
 			$table->string('id', 60);
 			$table->string('name', 60);
 			$table->text('description')->nullable();
@@ -26,7 +26,7 @@ class CreatePermissionTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('permission');
+		Schema::drop('px_permission');
 	}
 
 }

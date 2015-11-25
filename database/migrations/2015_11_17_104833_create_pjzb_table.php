@@ -11,7 +11,7 @@ class CreatePjzbTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('pjzb', function (Blueprint $table) {
+		Schema::create('px_pjzb', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('xh', 20)->nullable();
 			$table->string('mc', 60);
@@ -27,7 +27,7 @@ class CreatePjzbTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('pjzb');
+		Schema::drop('px_pjzb');
 	}
 
 }

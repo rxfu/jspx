@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pfdj extends Model {
 
-	protected $table = 'pfdj';
+	protected $table = 'px_pfdj';
 
 	public $timestamps = false;
 

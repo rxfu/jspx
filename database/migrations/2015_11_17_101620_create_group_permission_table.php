@@ -11,13 +11,13 @@ class CreateGroupPermissionTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('group_permission', function (Blueprint $table) {
+		Schema::create('px_group_permission', function (Blueprint $table) {
 			$table->integer('group_id');
 			$table->string('permission_id', 60);
 
 			$table->primary(['group_id', 'permission_id']);
-			$table->foreign('group_id')->references('id')->on('group')->onDelete('cascade')->onUpdate('cascade');
-			$table->foreign('permission_id')->references('id')->on('permission')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('group_id')->references('id')->on('px_group')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('permission_id')->references('id')->on('px_permission')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
@@ -27,7 +27,7 @@ class CreateGroupPermissionTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('group_permission');
+		Schema::drop('px_group_permission');
 	}
 
 }

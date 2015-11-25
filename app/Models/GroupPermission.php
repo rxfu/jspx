@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupPermission extends Model {
 
-	protected $table = 'group_permission';
+	protected $table = 'px_permission';
 
 	public $timestamps = false;
 

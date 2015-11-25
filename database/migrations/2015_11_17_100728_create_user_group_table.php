@@ -11,13 +11,13 @@ class CreateUserGroupTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('user_group', function (Blueprint $table) {
+		Schema::create('px_user_group', function (Blueprint $table) {
 			$table->integer('user_id');
 			$table->integer('group_id');
 
 			$table->primary(['user_id', 'group_id']);
-			$table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
-			$table->foreign('group_id')->references('id')->on('group')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('user_id')->references('id')->on('px_user')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('group_id')->references('id')->on('px_group')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
@@ -27,7 +27,7 @@ class CreateUserGroupTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('user_group');
+		Schema::drop('px_user_group');
 	}
 
 }

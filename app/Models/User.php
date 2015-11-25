@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var string
 	 */
-	protected $table = 'user';
+	protected $table = 'px_user';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	protected $hidden = ['password', 'remember_token'];
 
 	public function groups() {
-		return $this->belongsToMany('App\Models\Group', 'user_group');
+		return $this->belongsToMany('App\Models\Group', 'px_user_group');
 	}
 
 }

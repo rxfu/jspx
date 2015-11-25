@@ -11,7 +11,7 @@ class CreatePfdjTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('pfdj', function (Blueprint $table) {
+		Schema::create('px_pfdj', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('mc', 20)->unique();
 			$table->integer('zdfz')->default(0);
@@ -25,7 +25,7 @@ class CreatePfdjTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop('pfdj');
+		Schema::drop('px_pfdj');
 	}
 
 }
