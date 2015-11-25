@@ -35,4 +35,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsToMany('App\Models\Group', 'px_user_group');
 	}
 
+	public function department() {
+		return $this->belongsTo('App\Models\Department', 'department_id', 'dw');
+	}
+
 }

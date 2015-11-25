@@ -9,7 +9,7 @@ class Department extends Model {
 	public $timestamps = false;
 
 	public function users() {
-		return $this->belongsToMany('App\Models\User', 'px_user');
+		return $this->hasMany('App\Models\User', 'department_id', 'dw');
 	}
 
 }
