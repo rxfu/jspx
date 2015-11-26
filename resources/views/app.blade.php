@@ -61,6 +61,41 @@
                             <li>
                                 <a href="{{ route('home') }}"><i class="fa fa-dashboard fa-fw"></i> 概况</a>
                             </li>
+                            @if ($user->groups[0]->permissions->contains('pfjg.statistics'))
+                                <li>
+                                    <a href="#"><i class="fa fa-database fa-fw"></i> 指标统计<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>统计表</li>
+                                    </ul>
+                                </li>
+                            @endif
+                            @if ($user->groups[0]->permissions->contains('pjzb.list') || $user->groups[0]->permissions->contains('pjbz.list') || $user->groups[0]->permissions->contains('pfdj.list') || $user->groups[0]->permissions->contains('pfjg.monitor'))
+                                <li>
+                                    <a href="#"><i class="fa fa-table fa-fw"></i> 评分管理<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        @if ($user->groups[0]->permissions->contains('pjzb.list'))
+                                            <li>
+                                                <a href="{{ url('pjzb/list') }}">评分指标管理</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('pjbz.list'))
+                                            <li>
+                                                <a href="{{ url('pjbz/list') }}">评分标准管理</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('pfdj.list'))
+                                            <li>
+                                                <a href="{{ url('pfdj/list') }}">评分等级管理</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('pfjg.monitor'))
+                                            <li>
+                                                <a href="{{ url('pfjg/monitor') }}">评分监控</a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
                             @if ($user->groups[0]->permissions->contains('user.add') || $user->groups[0]->permissions->contains('user.list') || $user->groups[0]->permissions->contains('user.change'))
                                 <li>
                                     <a href="#"><i class="fa fa-user fa-fw"></i> 用户管理<span class="fa arrow"></span></a>
