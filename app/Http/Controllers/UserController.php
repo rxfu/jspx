@@ -3,8 +3,9 @@
 use App\Models\Department;
 use App\Models\Group;
 use App\Models\User;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller {
@@ -45,7 +46,7 @@ class UserController extends Controller {
 			$user->activated     = $input['activated'];
 
 			if ($user->save()) {
-				$user->groups()->sync($input['group']);
+				$user->groups()->sync([$input['group']]);
 
 				return redirect('user/list')->with('status', '用户 ' . $user->username . ' 注册成功');
 			} else {
@@ -63,141 +64,97 @@ class UserController extends Controller {
 	}
 
 	public function getEdit($id) {
-
-		$title       = '编辑用户';
 		$user        = User::find($id);
-		$departments = Department::orderBy('id', 'asc')->lists('name', 'id');
-		$groups      = Group::orderBy('id', 'asc')->lists('name', 'id');
+		$departments = Department::orderBy('mc', 'asc')->get();
+		$groups      = Group::orderBy('id', 'asc')->get();
 
-		return View::make('user.edit', array('title' => $title, 'user' => $user, 'departments' => $departments, 'groups' => $groups));
+		return view('user.edit', ['title' => '编辑用户', 'user' => $user, 'departments' => $departments, 'groups' => $groups]);
 	}
 
-	public function postUpdate($id) {
-
-		$data = Input::all();
+	public function putUpdate(Request $request, $id) {
+		$input = $request->all();
 
 		$rules = array(
 			'email' => 'email',
 		);
 
-		$validator = Validator::make($data, $rules);
+		$validator = Validator::make($input, $rules);
 		if ($validator->passes()) {
-
-			$user        = User::find($id);
-			$user->email = $request->input('email');
-			// $user->realname = $request->input( 'realname' );
-			$user->department_id = $request->input('department');
-			$user->activated     = $request->input('activated');
+			$user                = User::find($id);
+			$user->email         = $input['email'];
+			$user->department_id = $input['department'];
+			$user->activated     = $input['activated'];
 
 			if ($user->save()) {
+				$user->groups()->sync([$input['group']]);
 
-				$user->groups()->sync(array($request->input('group')));
-
-				return Redirect::route('user.list')->with('flash_success', '用户 ' . $user->username . ' 修改成功');
+				return redirect('user/list')->with('status', '用户 ' . $user->username . ' 修改成功');
 			} else {
-				return Redirect::back()->withInput()->with('flash_error', '修改失败');
+				return back()->withErrors('修改失败');
 			}
 		} else {
-			return Redirect::back()->withInput()->with('flash_error', $validator->messages());
+			return back()->withErrors($validator);
 		}
 	}
 
-	public function postDestroy($id) {
-
+	public function deleteDelete($id) {
 		$user = User::find($id);
 
 		if (is_null($user)) {
-			return Redirect::back()->with('flash_error', '没有找到用户');
+			return back()->withErrors('没有找到用户');
 		} elseif ($user->delete()) {
-			return Redirect::route('user.list')->with('flash_success', '用户删除成功');
+			return redirect('user/list')->with('status', '用户删除成功');
 		} else {
-			return Redirect::back()->with('flash_error', '用户删除失败');
+			return back()->withErrors('用户删除失败');
 		}
 	}
 
-	public function getChangePassword() {
-
-		$title = '修改密码';
-
-		return View::make('user.change_password', array('title' => $title));
-	}
-
 	public function getResetPassword($id) {
+		$user = User::find($id);
 
-		$title = '重置密码';
-		$user  = User::find($id);
-
-		return View::make('user.reset_password', array('title' => $title, 'user' => $user));
+		return View::make('user.reset_password', ['title' => '重置密码', 'user' => $user]);
 	}
 
-	public function postChangePassword() {
+	public function getChangePassword() {
+		return view('user.change_password', ['title' => '修改密码']);
+	}
 
-		$data = Input::all();
+	public function putChangePassword(Request $request) {
+		$input = $request->all();
+		$user  = Auth::user();
 
-		if (!Hash::check($data['password_old'], Auth::user()->password)) {
-			return Redirect::back()->withInput->with('flash_error', '原始密码错误');
+		if (!Hash::check($input['password_old'], $user->password)) {
+			return back()->withErrors('原始密码错误');
 		}
 
 		$rules = array(
 			'password' => 'alpha_dash|confirmed',
 		);
 
-		$validator = Validator::make($data, $rules);
+		$validator = Validator::make($input, $rules);
 		if ($validator->passes()) {
-
-			$user           = Auth::user();
-			$user->password = Hash::make($request->input('password'));
+			$user->password = Hash::make($input['password']);
 			if ($user->save()) {
-
-				return Redirect::back()
-					->with('flash_success', '密码修改成功');
+				return back()->with('status', '密码修改成功');
 			} else {
-				return Redirect::back()
-					->withInput()
-					->with('flash_error', '密码修改失败。');
+				return back()->withErrors('密码修改失败。');
 			}
 		} else {
-			return Redirect::back()->withInput()->with('flash_error', $validator->messages());
+			return back()->withErrors($validator);
 		}
 	}
 
-	public function postResetPassword($id) {
-		/*
-			$data = Input::all();
-
-			$rules = array(
-				'password' => 'alpha_dash|confirmed',
-			);
-
-			$validator = Validator::make( $data, $rules );
-			if ( $validator->passes() ) {
-
-				$user = User::find( $id );
-				$user->password = Hash::make( $request->input( 'password' ) );
-				if ( $user->save() ) {
-
-					return Redirect::back()
-					->with( 'flash_success', '密码重置成功' );
-				} else {
-					return Redirect::back()
-					->withInput()
-					->with( 'flash_error', '密码重置失败。' );
-				}
-			} else {
-				return Redirect::back()->withInput()->with( 'flash_error', $validator->messages() );
-			}
-		*/
+	public function putResetPassword($id) {
 		$user           = User::find($id);
-		$user->password = Hash::make(DEFAULT_PASSWORD);
+		$user->password = Hash::make('5823396');
 		if ($user->save()) {
-			return Redirect::back()->with('flash_success', '密码重置成功');
+			return back()->with('status', '密码重置成功');
 		} else {
-			return Redirect::back()->withInput()->with('flash_error', '密码重置失败。');
+			return back()->withErrors('密码重置失败。');
 		}
 	}
 
 	public function getDeny() {
-
 		return View::make('user.denied');
 	}
 

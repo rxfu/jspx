@@ -48,7 +48,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="{{ url('user/profile') }}"><i class="fa fa-user fa-fw"></i> 个人资料</a></li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> 修改密码</a></li>
+                            <li><a href="{{ url('user/change-password') }}"><i class="fa fa-gear fa-fw"></i> 修改密码</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ url('auth/logout') }}"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
                         </ul>
@@ -91,7 +91,7 @@
 
         <div id="page-wrapper">
             @if (session('status'))
-                <div class="alert alert-danger alert-dismissable">
+                <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     {{ session('status') }}
                 </div>

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('app')
 
 @section('content')
 	<div class="row">
@@ -6,23 +6,25 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">修改用户 {{ Auth::user()->username }} 密码</div>
 				<div class="panel-body">
-					{{ Form::open(array('action' => 'UserController@postChangePassword', 'method' => 'put', 'role' => 'form')) }}
+					<form action="{{ url('user/change-password' )}}" method="POST" role="form">
+						<input type="hidden" name="_method" value="PUT">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<fieldset>
 							<div class="form-group">
-								{{ Form::label('password_old', '旧密码', array('class' => 'control-label')) }}
-								{{ Form::password('password_old', array('class' => 'form-control', 'placeholder' => '旧密码')) }}
+								<label for="password_old" class="control-label">旧密码</label>
+								<input type="password" name="password_old" id="password_old" class="form-control" placeholder="旧密码">
 							</div>
 							<div class="form-group">
-								{{ Form::label('password', '新密码', array('class' => 'control-label')) }}
-								{{ Form::password('password', array('class' => 'form-control', 'placeholder' => '新密码')) }}
+								<label for="password" class="control-label">新密码</label>
+								<input type="password" name="password" id="password_old" class="form-control" placeholder="新密码">
 							</div>
 							<div class="form-group">
-								{{ Form::label('password_confirmation', '确认密码', array('class' => 'control-label')) }}
-								{{ Form::password('password_confirmation', array('class' => 'form-control', 'placeholder' => '确认密码')) }}
+								<label for="password_confirmation" class="control-label">确认密码</label>
+								<input type="password" name="password_confirmation" id="password_old" class="form-control" placeholder="确认密码">
 							</div>
-							{{ Form::button('修改密码', array('type' => 'submit', 'class' =>'btn btn-lg btn-success btn-block')) }}
+							<button type="submit" class="btn btn-lg btn-success btn-block">修改密码</button>
 						</fieldset>
-					{{ Form::close() }}
+					</form>
 				</div>
 			</div>
 		</div>
