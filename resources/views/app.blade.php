@@ -83,6 +83,23 @@
                                     </ul>
                                 </li>
                             @endif
+                            @if ($user->groups[0]->permissions->contains('group.add') || $user->groups[0]->permissions->contains('group.list'))
+                                <li>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> 组管理<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        @if ($user->groups[0]->permissions->contains('group.add'))
+                                            <li>
+                                                <a href="{{ url('group/add') }}">添加组</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('group.list'))
+                                            <li>
+                                                <a href="{{ url('group/list') }}">组列表</a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </nav>

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('app')
 
 @section('content')
 	<div class="row">
@@ -6,15 +6,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">编辑组 {{ $group->name }} 信息</div>
 				<div class="panel-body">
-					{{ Form::open(array('action' => array('GroupController@postUpdate', $group->id), 'method' => 'put', 'role' => 'form')) }}
+					<form action="{{ url('group/update', $group->id) }}" method="POST" role="form">
+						<input type="hidden" name="_method" value="PUT">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<fieldset>
 							<div class="form-group">
-								{{ Form::label('description', '组描述', array('class' => 'control-label')) }}
-								{{ Form::text('description', strip_tags($group->description), array('class' => 'form-control')) }}
+								<label for="description" class="control-label">组描述</label>
+								<textarea name="description" cols="50" rows="10" class="form-control" placeholder="组描述">{{ strip_tags($group->description) }}</textarea>
 							</div>
-							{{ Form::button('更新', array('type' => 'submit', 'class' =>'btn btn-lg btn-success btn-block')) }}
+							<button type="submit" class="btn btn-lg btn-success btn-block">更新</button>
 						</fieldset>
-					{{ Form::close() }}
+					</form>
 				</div>
 			</div>
 		</div>

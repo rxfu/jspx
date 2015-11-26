@@ -21,4 +21,5 @@ Route::controllers([
 	'auth'     => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 	'user'     => 'UserController',
+	'group'    => 'GroupController',
 ]);

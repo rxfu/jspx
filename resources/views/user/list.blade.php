@@ -41,7 +41,7 @@
 								</td>
 								<td><a href="{{ url('user/edit', $user->id) }}" class="btn btn-primary" role="button" title="编辑"><i class="fa fa-edit fa-fw"></i></a></td>
 								<td>
-									<form id="delete" name="delete" method="POST" action="{{ url('user/delete', $user->id) }}" role="form">
+									<form id="delete" name="delete" method="POST" action="{{ url('user/delete', $user->id) }}" role="form" onsubmit="return confirm('你确定要删除这条记录吗？')">
 										<input type="hidden" name="_method" value="DELETE">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<button type="submit" class="btn btn-danger" title="删除"><i class="fa fa-trash-o fa-fw"></i></button>

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('app')
 
 @section('content')
 	<div class="row">
@@ -16,7 +16,7 @@
 							<td class="col-md-8 text-left">{{ $group->description }}</td>
 						</tr>
 					</table>
-					{{ HTML::linkRoute('group.edit', '编辑', array($group->id), array('class' => 'btn btn-primary', 'role' => 'button')) }}
+					<a href="{{ url('group/edit', $group->id) }}" title="编辑" class="btn btn-primary" role="button">编辑</a>
 				</div>
 			</div>
 		</div>
