@@ -15,7 +15,7 @@
 							</div>
 							<div class="form-group">
 								<label for="description" class="control-label">组描述</label>
-								<textarea name="description" cols="50" rows="10" class="form-control" placeholder="组描述">{{ Input::old('description') }}</textarea>
+								<textarea name="description" cols="50" rows="10" class="form-control" placeholder="组描述">{{ old('description') }}</textarea>
 							</div>
 							<button type="submit" class="btn btn-lg btn-success btn-block">添加</button>
 						</fieldset>

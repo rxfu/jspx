@@ -100,6 +100,23 @@
                                     </ul>
                                 </li>
                             @endif
+                            @if ($user->groups[0]->permissions->contains('permission.add') || $user->groups[0]->permissions->contains('permission.list'))
+                                <li>
+                                    <a href="#"><i class="fa fa-lock fa-fw"></i> 权限管理<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        @if ($user->groups[0]->permissions->contains('permission.add'))
+                                            <li>
+                                                <a href="{{ url('permission/add') }}">添加权限</a>
+                                            </li>
+                                        @endif
+                                        @if ($user->groups[0]->permissions->contains('permission.list'))
+                                            <li>
+                                                <a href="{{ url('permission/list') }}">权限列表</a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </nav>

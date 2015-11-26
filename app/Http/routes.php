@@ -18,8 +18,9 @@ Route::get('/', function () {
 Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::controllers([
-	'auth'     => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-	'user'     => 'UserController',
-	'group'    => 'GroupController',
+	'auth'       => 'Auth\AuthController',
+	'password'   => 'Auth\PasswordController',
+	'user'       => 'UserController',
+	'group'      => 'GroupController',
+	'permission' => 'PermissionController',
 ]);

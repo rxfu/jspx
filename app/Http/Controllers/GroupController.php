@@ -28,8 +28,6 @@ class GroupController extends Controller {
 	 * @return Response
 	 */
 	public function getAdd() {
-		$title = '添加新组';
-
 		return view('group.add', ['title' => '添加新组']);
 	}
 
