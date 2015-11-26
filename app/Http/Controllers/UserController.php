@@ -5,7 +5,7 @@ use App\Models\Group;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller {
 
@@ -28,34 +28,31 @@ class UserController extends Controller {
 	}
 
 	public function postSave(Request $request) {
-		$data = $request->all();
+		$input = $request->all();
 
 		$rules = array(
-			'username' => 'required|unique:users',
+			'username' => 'required|unique:px_user',
 			'email'    => 'email',
 		);
 
-		$validator = Validator::make($data, $rules);
+		$validator = Validator::make($input, $rules);
 		if ($validator->passes()) {
-
-			$user           = new User;
-			$user->username = Input::get('username');
-			$user->email    = Input::get('email');
-			$user->password = Hash::make(DEFAULT_PASSWORD);
-			// $user->realname = Input::get( 'realname' );
-			$user->department_id = Input::get('department');
-			$user->activated     = Input::get('activated');
+			$user                = new User;
+			$user->username      = $input['username'];
+			$user->email         = $input['email'];
+			$user->password      = Hash::make('5823396');
+			$user->department_id = $input['department'];
+			$user->activated     = $input['activated'];
 
 			if ($user->save()) {
+				$user->groups()->sync($input['group']);
 
-				$user->groups()->sync(array(Input::get('group')));
-
-				return Redirect::route('user.list')->with('flash_success', '用户 ' . $user->username . ' 注册成功');
+				return redirect('user/list')->with('status', '用户 ' . $user->username . ' 注册成功');
 			} else {
-				return Redirect::back()->withInput()->with('flash_error', '用户注册失败');
+				return back()->withErrors('用户注册失败');
 			}
 		} else {
-			return Redirect::back()->withInput()->with('flash_error', $validator->messages());
+			return back()->withErrors($validator);
 		}
 	}
 
@@ -87,14 +84,14 @@ class UserController extends Controller {
 		if ($validator->passes()) {
 
 			$user        = User::find($id);
-			$user->email = Input::get('email');
-			// $user->realname = Input::get( 'realname' );
-			$user->department_id = Input::get('department');
-			$user->activated     = Input::get('activated');
+			$user->email = $request->input('email');
+			// $user->realname = $request->input( 'realname' );
+			$user->department_id = $request->input('department');
+			$user->activated     = $request->input('activated');
 
 			if ($user->save()) {
 
-				$user->groups()->sync(array(Input::get('group')));
+				$user->groups()->sync(array($request->input('group')));
 
 				return Redirect::route('user.list')->with('flash_success', '用户 ' . $user->username . ' 修改成功');
 			} else {
@@ -149,7 +146,7 @@ class UserController extends Controller {
 		if ($validator->passes()) {
 
 			$user           = Auth::user();
-			$user->password = Hash::make(Input::get('password'));
+			$user->password = Hash::make($request->input('password'));
 			if ($user->save()) {
 
 				return Redirect::back()
@@ -176,7 +173,7 @@ class UserController extends Controller {
 			if ( $validator->passes() ) {
 
 				$user = User::find( $id );
-				$user->password = Hash::make( Input::get( 'password' ) );
+				$user->password = Hash::make( $request->input( 'password' ) );
 				if ( $user->save() ) {
 
 					return Redirect::back()

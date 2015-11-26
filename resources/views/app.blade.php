@@ -90,6 +90,12 @@
     	</header>
 
         <div id="page-wrapper">
+            @if (session('status'))
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ session('status') }}
+                </div>
+            @endif
             @if ($errors->any())
                 <div class="alert alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
