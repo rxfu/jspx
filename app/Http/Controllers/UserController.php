@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller {
-
-	public function __construct() {
-
-		$this->middleware('auth');
-	}
+class UserController extends AdminController {
 
 	public function getList() {
 		$users = User::with('Department')->orderBy('id', 'asc')->get();

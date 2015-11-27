@@ -5,11 +5,7 @@ use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class GroupController extends Controller {
-
-	public function __construct() {
-		$this->middleware('auth');
-	}
+class GroupController extends AdminController {
 
 	/**
 	 * Display a listing of the resource.

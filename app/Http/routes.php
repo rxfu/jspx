@@ -23,4 +23,5 @@ Route::controllers([
 	'user'       => 'UserController',
 	'group'      => 'GroupController',
 	'permission' => 'PermissionController',
+	'pfdj'       => 'PfdjController',
 ]);

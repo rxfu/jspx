@@ -75,12 +75,12 @@
                                     <ul class="nav nav-second-level">
                                         @if ($user->groups[0]->permissions->contains('pjzb.list'))
                                             <li>
-                                                <a href="{{ url('pjzb/list') }}">评分指标管理</a>
+                                                <a href="{{ url('[jzb/list') }}">评价指标管理</a>
                                             </li>
                                         @endif
                                         @if ($user->groups[0]->permissions->contains('pjbz.list'))
                                             <li>
-                                                <a href="{{ url('pjbz/list') }}">评分标准管理</a>
+                                                <a href="{{ url('pjbz/list') }}">评价标准管理</a>
                                             </li>
                                         @endif
                                         @if ($user->groups[0]->permissions->contains('pfdj.list'))
@@ -112,7 +112,7 @@
                                         @endif
                                         @if ($user->groups[0]->permissions->contains('user.change'))
                                             <li>
-                                                <a href="{{ url('user/change') }}">修改密码</a>
+                                                <a href="{{ url('user/change-password') }}">修改密码</a>
                                             </li>
                                         @endif
                                     </ul>
