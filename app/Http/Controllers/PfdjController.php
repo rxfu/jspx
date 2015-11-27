@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Pfdj;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PfdjController extends AdminController {
 
@@ -12,7 +14,7 @@ class PfdjController extends AdminController {
 	public function getList() {
 		$pfdjs = Pfdj::orderBy('zdfz', 'asc')->get();
 
-		return view('Pfdj.list', ['title' => '评分等级列表', 'pfdjs' => $pfdjs]);
+		return view('pfdj.list', ['title' => '评分等级列表', 'pfdjs' => $pfdjs]);
 	}
 
 	/**
@@ -21,7 +23,7 @@ class PfdjController extends AdminController {
 	 * @return Response
 	 */
 	public function getAdd() {
-		return view('Pfdj.add', ['title' => '添加评分等级']);
+		return view('pfdj.add', ['title' => '添加评分等级']);
 	}
 
 	/**
@@ -30,30 +32,28 @@ class PfdjController extends AdminController {
 	 * @return Response
 	 */
 	public function postSave(Request $request) {
-
-		$data = Input::all();
+		$input = $request->all();
 
 		$rules = array(
-			'name'  => 'required|unique:categories',
-			'order' => 'numeric',
+			'mc'   => 'required|unique:px_pfdj',
+			'zdfz' => 'numeric',
+			'zgfz' => 'numeric',
 		);
 
-		$validator = Validator::make($data, $rules);
+		$validator = Validator::make($input, $rules);
 		if ($validator->passes()) {
+			$pfdj       = new Pfdj;
+			$pfdj->mc   = $input['mc'];
+			$pfdj->zdfz = $input['zdfz'];
+			$pfdj->zgfz = $input['zgfz'];
 
-			$Pfdj              = new Pfdj;
-			$Pfdj->seq         = Input::get('seq');
-			$Pfdj->name        = Input::get('name');
-			$Pfdj->description = nl2br(Input::get('description'));
-			$Pfdj->order       = Input::get('order');
-
-			if ($Pfdj->save()) {
-				return Redirect::route('Pfdj.list')->with('flash_success', '一级指标 ' . $Pfdj->name . ' 添加成功');
+			if ($pfdj->save()) {
+				return redirect('pfdj/list')->with('status', '评分等级 ' . $pfdj->mc . ' 添加成功');
 			} else {
-				return Redirect::back()->withInput()->with('flash_error', '一级指标添加失败');
+				return back()->withErrors('评分等级添加失败');
 			}
 		} else {
-			return Redirect::back()->withInput()->with('flash_error', $validator->messages());
+			return back()->withErrors($validator);
 		}
 	}
 
@@ -64,11 +64,9 @@ class PfdjController extends AdminController {
 	 * @return Response
 	 */
 	public function getShow($id) {
+		$pfdj = Pfdj::find($id);
 
-		$title = '一级指标详细信息';
-		$Pfdj  = Pfdj::find($id);
-
-		return View::make('Pfdj.show', array('title' => $title, 'Pfdj' => $Pfdj));
+		return view('pfdj.show', ['title' => '评分等级详细信息', 'pfdj' => $pfdj]);
 	}
 
 	/**
@@ -78,11 +76,9 @@ class PfdjController extends AdminController {
 	 * @return Response
 	 */
 	public function getEdit($id) {
+		$pfdj = Pfdj::find($id);
 
-		$title = '编辑一级指标';
-		$Pfdj  = Pfdj::find($id);
-
-		return View::make('Pfdj.edit', array('title' => $title, 'Pfdj' => $Pfdj));
+		return view('pfdj.edit', ['title' => '编辑评分等级', 'pfdj' => $pfdj]);
 	}
 
 	/**
@@ -91,30 +87,27 @@ class PfdjController extends AdminController {
 	 * @param int     $id
 	 * @return Response
 	 */
-	public function postUpdate($id) {
-
-		$data = Input::all();
+	public function putUpdate(Request $request, $id) {
+		$input = $request->all();
 
 		$rules = array(
-			'order' => 'numeric',
+			'zdfz' => 'numeric',
+			'zgfz' => 'numeric',
 		);
 
-		$validator = Validator::make($data, $rules);
+		$validator = Validator::make($input, $rules);
 		if ($validator->passes()) {
+			$pfdj       = Pfdj::find($id);
+			$pfdj->zdfz = $input['zdfz'];
+			$pfdj->zgfz = $input['zgfz'];
 
-			$Pfdj              = Pfdj::find($id);
-			$Pfdj->seq         = Input::get('seq');
-			$Pfdj->name        = Input::get('name');
-			$Pfdj->description = nl2br(Input::get('description'));
-			$Pfdj->order       = Input::get('order');
-
-			if ($Pfdj->save()) {
-				return Redirect::route('Pfdj.list')->with('flash_success', '一级指标 ' . $Pfdj->name . ' 修改成功');
+			if ($pfdj->save()) {
+				return redirect('pfdj/list')->with('status', '评分等级 ' . $pfdj->mc . ' 修改成功');
 			} else {
-				return Redirect::back()->withInput()->with('flash_error', '修改失败');
+				return back()->withErrors('修改失败');
 			}
 		} else {
-			return Redirect::back()->withInput()->with('flash_error', $validator->messages());
+			return back()->withErrors($validator);
 		}
 	}
 
@@ -124,16 +117,15 @@ class PfdjController extends AdminController {
 	 * @param int     $id
 	 * @return Response
 	 */
-	public function postDestroy($id) {
+	public function deleteDelete($id) {
+		$pfdj = Pfdj::find($id);
 
-		$Pfdj = Pfdj::find($id);
-
-		if (is_null($Pfdj)) {
-			return Redirect::back()->with('flash_error', '没有找到一级指标');
-		} elseif ($Pfdj->delete()) {
-			return Redirect::route('Pfdj.list')->with('flash_success', '一级指标删除成功');
+		if (is_null($pfdj)) {
+			return back()->withErrors('没有找到评分等级');
+		} elseif ($pfdj->delete()) {
+			return redirect('pfdj/list')->with('status', '评分等级删除成功');
 		} else {
-			return Redirect::back()->with('flash_error', '一级指标删除失败');
+			return back()->withErrors('评分等级删除失败');
 		}
 	}
 

@@ -7,6 +7,7 @@
 				<div class="panel-heading">添加评分等级</div>
 				<div class="panel-body">
 					<form action="{{ url('pfdj/save') }}" method="POST" role="form">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<fieldset>
 							<div class="form-group">
 								<label for="mc" class="control-label">等级名称</label>

@@ -1,32 +1,26 @@
-@extends('master')
+@extends('app')
 
 @section('content')
 	<div class="row">
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">编辑一级指标 {{ $category->name }} 信息</div>
+				<div class="panel-heading">编辑评分等级 {{ $pfdj->mc }} 信息</div>
 				<div class="panel-body">
-					{{ Form::open(array('action' => array('CategoryController@postUpdate', $category->id), 'method' => 'put', 'role' => 'form')) }}
+					<form action="{{ url('pfdj/update', $pfdj->id) }}" method="POST" role="form">
+						<input type="hidden" name="_method" value="PUT">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<fieldset>
 							<div class="form-group">
-								{{ Form::label('seq', '指标序号', array('class' => 'control-label')) }}
-								{{ Form::text('seq', $category->seq, array('class' => 'form-control')) }}
+								<label for="zdfz" class="control-label">最低分值</label>
+								<input type="text" name="zdfz" id="zdfz" class="form-control" placeholder="最低分值" value="{{ $pfdj->zdfz }}">
 							</div>
 							<div class="form-group">
-								{{ Form::label('name', '指标名称', array('class' => 'control-label')) }}
-								{{ Form::text('name', $category->name, array('class' => 'form-control')) }}
+								<label for="zgfz" class="control-label">最高分值</label>
+								<input type="text" name="zgfz" id="zgfz" class="form-control" placeholder="最高分值" value="{{ $pfdj->zgfz }}">
 							</div>
-							<div class="form-group">
-								{{ Form::label('description', '指标说明', array('class' => 'control-label')) }}
-								{{ Form::textarea('description', strip_tags($category->description), array('class' => 'form-control')) }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('order', '指标排序', array('class' => 'control-label')) }}
-								{{ Form::selectRange('order', 1, 999, $category->order, array('class' => 'form-control')) }}
-							</div>
-							{{ Form::button('更新', array('type' => 'submit', 'class' =>'btn btn-lg btn-success btn-block')) }}
+							<button type="submit" class="btn btn-lg btn-success btn-block">更新</button>
 						</fieldset>
-					{{ Form::close() }}
+					</form>
 				</div>
 			</div>
 		</div>
