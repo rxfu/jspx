@@ -75,7 +75,7 @@
                                     <ul class="nav nav-second-level">
                                         @if ($user->groups[0]->permissions->contains('pjzb.list'))
                                             <li>
-                                                <a href="{{ url('[jzb/list') }}">评价指标管理</a>
+                                                <a href="{{ url('pjzb/list') }}">评价指标管理</a>
                                             </li>
                                         @endif
                                         @if ($user->groups[0]->permissions->contains('pjbz.list'))

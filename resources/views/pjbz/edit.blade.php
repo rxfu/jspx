@@ -31,7 +31,7 @@
 								<select name="pjzb" class="form-control">
 									@foreach ($pjzbs as $pjzb)
 										<option value="{{ $pjzb->id }}"{{ $pjbz->pjzb_id == $pjzb->id ? ' selected' : '' }}>{{ $pjzb->mc }}</option>
-									@endfor
+									@endforeach
 								</select>
 							</div>
 							<div class="form-group">
