@@ -23,5 +23,8 @@ Route::controllers([
 	'user'       => 'UserController',
 	'group'      => 'GroupController',
 	'permission' => 'PermissionController',
+	'pjzb'       => 'PjzbController',
+	'pjbz'       => 'PjbzController',
 	'pfdj'       => 'PfdjController',
+	'pfjg'       => 'PfjgController',
 ]);
