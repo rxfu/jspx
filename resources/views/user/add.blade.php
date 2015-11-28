@@ -36,10 +36,10 @@
 							<div class="form-group">
 								<label for="activated" class="control-label">启用标志</label>
 								<label class="radio-inline">
-									<input type="radio" name="activated" id="activated" value="1" checked>&nbsp;启用
+									<input type="radio" name="activated" value="1" checked>&nbsp;启用
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="activated" id="activated" value="0">&nbsp;禁用
+									<input type="radio" name="activated" value="0">&nbsp;禁用
 								</label>
 							</div>
 							<button type="submit" class="btn btn-lg btn-success btn-block">添加</button>

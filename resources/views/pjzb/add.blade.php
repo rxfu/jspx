@@ -29,23 +29,7 @@
 									@endfor
 								</select>
 							</div>
-							<div class="form-group">
-								{{ Form::label('seq', '指标序号', array('class' => 'control-label')) }}
-								{{ Form::text('seq', Input::old('seq'), array('class' => 'form-control')) }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('name', '指标名称', array('class' => 'control-label')) }}
-								{{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('description', '指标说明', array('class' => 'control-label')) }}
-								{{ Form::textarea('description', Input::old('descrption'), array('class' => 'form-control')) }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('order', '指标排序', array('class' => 'control-label')) }}
-								{{ Form::selectRange('order', 1, 999, Input::old('order'), array('class' => 'form-control')) }}
-							</div>
-							<button type="submit" class="btn btn-lg btn-success btn-block">更新</button>
+							<button type="submit" class="btn btn-lg btn-success btn-block">添加</button>
 						</fieldset>
 					</form>
 				</div>
