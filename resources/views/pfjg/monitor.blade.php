@@ -25,7 +25,7 @@
 								@foreach ($results as $result)
 									<tr>
 										<td>{{ $result->jsgh }}</td>
-										<td>{{ $result->xm }}</td>
+										<td>{{ $result->jsxm }}</td>
 										<td>{{ $result->xymc }}</td>
 										<td>{{ $result->kcxh }}</td>
 										<td>{{ $result->count }}</td>

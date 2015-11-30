@@ -65,7 +65,9 @@
                                 <li>
                                     <a href="#"><i class="fa fa-database fa-fw"></i> 指标统计<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li>统计表</li>
+                                        <li>
+                                            <a href="{{ url('pfjg/statistics') }}" title="评价统计表">评价统计表</a>
+                                        </li>
                                     </ul>
                                 </li>
                             @endif
