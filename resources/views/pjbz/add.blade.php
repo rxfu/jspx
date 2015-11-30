@@ -6,7 +6,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">添加评价标准</div>
 				<div class="panel-body">
-					<form action="{{ url('pjbz/save', $pjbz->id) }}" method="POST" role="form">
+					<form action="{{ url('pjbz/save') }}" method="POST" role="form">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<fieldset>
 							<div class="form-group">
@@ -30,7 +30,7 @@
 								<select name="pjzb" class="form-control">
 									@foreach ($pjzbs as $pjzb)
 										<option value="{{ $pjzb->id }}"{{ old('pjzb') == $pjzb->id ? ' selected' : '' }}>{{ $pjzb->mc }}</option>
-									@endfor
+									@endforeach
 								</select>
 							</div>
 							<div class="form-group">

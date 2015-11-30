@@ -48,7 +48,7 @@ class PjzbController extends AdminController {
 			$pjzb->px = $input['px'];
 
 			if ($pjzb->save()) {
-				return url('pjzb/list')->with('status', '评价指标 ' . $pjzb->mc . ' 添加成功');
+				return redirect('pjzb/list')->with('status', '评价指标 ' . $pjzb->mc . ' 添加成功');
 			} else {
 				return back()->withErrors('评价指标添加失败');
 			}
@@ -103,7 +103,7 @@ class PjzbController extends AdminController {
 			$pjzb->px = $input['px'];
 
 			if ($pjzb->save()) {
-				return url('pjzb/list')->with('status', '评价指标 ' . $pjzb->mc . ' 修改成功');
+				return redirect('pjzb/list')->with('status', '评价指标 ' . $pjzb->mc . ' 修改成功');
 			} else {
 				return back()->withErrors('修改失败');
 			}
@@ -124,7 +124,7 @@ class PjzbController extends AdminController {
 		if (is_null($pjzb)) {
 			return back()->withErrors('没有找到评价指标');
 		} elseif ($pjzb->delete()) {
-			return url('pjzb/list')->with('status', '评价指标删除成功');
+			return redirect('pjzb/list')->with('status', '评价指标删除成功');
 		} else {
 			return back()->withErrors('评价指标删除失败');
 		}

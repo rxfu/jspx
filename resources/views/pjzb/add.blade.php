@@ -6,7 +6,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">添加评价指标</div>
 				<div class="panel-body">
-					<form action="{{ url('pjzb/save', $pjzb->id) }}" method="POST" role="form">
+					<form action="{{ url('pjzb/save') }}" method="POST" role="form">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<fieldset>
 							<div class="form-group">

@@ -55,7 +55,7 @@ class PjbzController extends AdminController {
 			$pjbz->zt      = $input['zt'];
 
 			if ($pjbz->save()) {
-				return url('pjbz/list')->with('status', '评价标准 ' . $pjbz->mc . ' 添加成功');
+				return redirect('pjbz/list')->with('status', '评价标准 ' . $pjbz->mc . ' 添加成功');
 			} else {
 				return back()->withErrors('评价标准添加失败');
 			}
@@ -115,7 +115,7 @@ class PjbzController extends AdminController {
 			$pjbz->zt      = $input['zt'];
 
 			if ($pjbz->save()) {
-				return url('pjbz/list')->with('status', '评价标准 ' . $pjbz->mc . ' 修改成功');
+				return redirect('pjbz/list')->with('status', '评价标准 ' . $pjbz->mc . ' 修改成功');
 			} else {
 				return back()->withErrors('修改失败');
 			}
@@ -136,7 +136,7 @@ class PjbzController extends AdminController {
 		if (is_null($pjbz)) {
 			return back()->withErrors('没有找到评价标准');
 		} elseif ($pjbz->delete()) {
-			return url('pjbz/list')->with('status', '评价标准删除成功');
+			return redirect('pjbz/list')->with('status', '评价标准删除成功');
 		} else {
 			return back()->withErrors('评价标准删除失败');
 		}
