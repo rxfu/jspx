@@ -24,7 +24,7 @@ class CreatePfjgTable extends Migration {
 			$table->decimal('fz', 5, 2)->default(0);
 			$table->timestamps();
 
-			$table->primary(['jsgh', 'kcxh', 'pjbz_id']);
+			$table->primary(['jsgh', 'kcxh', 'pjbz_id', 'nd', 'xq']);
 			$table->foreign('pjbz_id')->references('id')->on('px_pjbz')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
