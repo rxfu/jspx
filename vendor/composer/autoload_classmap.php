@@ -13,6 +13,7 @@ return array(
     'CreatePfjgTable' => $baseDir . '/database/migrations/2015_11_17_110128_create_pfjg_table.php',
     'CreatePjbzTable' => $baseDir . '/database/migrations/2015_11_17_105245_create_pjbz_table.php',
     'CreatePjzbTable' => $baseDir . '/database/migrations/2015_11_17_104833_create_pjzb_table.php',
+    'CreateSystemsTable' => $baseDir . '/database/migrations/2015_11_30_115902_create_systems_table.php',
     'CreateUserGroupTable' => $baseDir . '/database/migrations/2015_11_17_100728_create_user_group_table.php',
     'CreateUserTable' => $baseDir . '/database/migrations/2015_11_16_170617_create_user_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

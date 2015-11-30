@@ -26,4 +26,5 @@ Route::controllers([
 	'pjzb'       => 'PjzbController',
 	'pjbz'       => 'PjbzController',
 	'pfdj'       => 'PfdjController',
+	'pfjg'       => 'PfjgController',
 ]);
