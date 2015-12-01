@@ -24,7 +24,7 @@ class PfjgController extends AdminController {
 			->where('pk_jxrw.xq', '=', $term)
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm as jsxm', 'pk_js.xy as xyh', 'xt_department.mc as xymc')
 			->addSelect(DB::raw('count(t_px_pfjg.pjbz_id) as count'))
-			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm', 'pk_js.xy', 'xt_department.mc', 'px_pfjg.pjbz_id')
+			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm', 'pk_js.xy', 'xt_department.mc')
 			->get();
 
 		return view('pfjg.monitor', ['title' => $title, 'results' => $results]);
@@ -55,7 +55,7 @@ class PfjgController extends AdminController {
 			->where('pk_jxrw.xq', '=', $term)
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc', 'pk_js.jsgh', 'pk_js.xm as jsxm')
 			->addSelect(DB::raw('sum(t_px_pfjg.fz) as total'))
-			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc', 'pk_js.jsgh', 'pk_js.xm', 'px_pfjg.fz')
+			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc', 'pk_js.jsgh', 'pk_js.xm')
 			->get();
 
 		return view('pfjg.statistics', ['title' => $title, 'results' => $results]);
