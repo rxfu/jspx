@@ -10,4 +10,8 @@ class Pfjg extends Model {
 		return $this->belongsTo('App\Models\Pjbz', 'pjbz_id');
 	}
 
+	public function pfdj() {
+		return $this->belongsTo('App\Models\Pfdj', 'pfdj_id');
+	}
+
 }

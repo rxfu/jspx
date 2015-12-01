@@ -22,10 +22,12 @@ class CreatePfjgTable extends Migration {
 			$table->string('nd', 4);
 			$table->string('xq', 1);
 			$table->decimal('fz', 5, 2)->default(0);
+			$table->integer('pfdj_id');
 			$table->timestamps();
 
 			$table->primary(['jsgh', 'kcxh', 'pjbz_id', 'nd', 'xq']);
 			$table->foreign('pjbz_id')->references('id')->on('px_pjbz')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('pfdj_id')->references('id')->on('px_pfdj')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
