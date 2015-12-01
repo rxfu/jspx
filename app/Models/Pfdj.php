@@ -8,8 +8,4 @@ class Pfdj extends Model {
 
 	public $timestamps = false;
 
-	public function pfjgs() {
-		return $this->hasMany('App\Models\Pfjg');
-	}
-
 }
