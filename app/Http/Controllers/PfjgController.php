@@ -30,9 +30,7 @@ class PfjgController extends AdminController {
 		return view('pfjg.monitor', ['title' => $title, 'results' => $results]);
 	}
 
-	public function getStatistics() {
-		$year  = System::find('CJ_WEB_ND')->value;
-		$term  = System::find('CJ_WEB_XQ')->value;
+	public function getStatistics($year, $term) {
 		$title = $year . '~' . ($year + 1) . '年度' . Term::find($term)->mc . '学期教师评学统计表';
 
 		$results = DB::table('pk_jxrw')

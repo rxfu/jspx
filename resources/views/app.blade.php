@@ -63,11 +63,13 @@
                             </li>
                             @if ($user->groups[0]->permissions->contains('pfjg.statistics'))
                                 <li>
-                                    <a href="#"><i class="fa fa-database fa-fw"></i> 指标统计<span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-database fa-fw"></i> 评分统计<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="{{ url('pfjg/statistics') }}" title="评价统计表">评价统计表</a>
-                                        </li>
+                                        @foreach ($periods as $period)
+                                            <li>
+                                                <a href="{{ url('pfjg/statistics', [$period['nd'], $period['xq']]) }}" title="评价统计表">{{ $period['nd'] . '~' . ($period['nd'] + 1) }}年度{{ $period['xqmc'] }}学期评价统计表</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                             @endif

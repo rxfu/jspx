@@ -1,5 +1,7 @@
 <?php namespace App\Providers;
 
+use App\Models\Pfjg;
+use App\Models\Term;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +14,12 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot(Guard $auth) {
 		view()->composer('app', function ($view) use ($auth) {
-			$view->with('user', $auth->user());
+			$periods = Pfjg::groupBy('nd', 'xq')->get(['nd', 'xq']);
+			foreach ($periods as &$period) {
+				$period['xqmc'] = Term::find($period['xq'])->mc;
+			}
+
+			$view->with('user', $auth->user())->with('periods', $periods);
 		});
 	}
 
