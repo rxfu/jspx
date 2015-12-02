@@ -39,4 +39,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsTo('App\Models\Department', 'department_id', 'dw');
 	}
 
+	public function major() {
+		return $this->belongsTo('App\Models\Major', 'major_id', 'zy');
+	}
+
 }

@@ -2,6 +2,7 @@
 
 use App\Models\Department;
 use App\Models\Group;
+use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,10 +18,11 @@ class UserController extends AdminController {
 	}
 
 	public function getAdd() {
-		$departments = Department::orderBy('mc', 'asc')->get();
+		$majors      = Major::orderBy('zy', 'asc')->get();
+		$departments = Department::orderBy('dw', 'asc')->get();
 		$groups      = Group::orderBy('id', 'asc')->get();
 
-		return view('user.add', array('title' => '注册新用户', 'departments' => $departments, 'groups' => $groups));
+		return view('user.add', array('title' => '注册新用户', 'departments' => $departments, 'majors' => $majors, 'groups' => $groups));
 	}
 
 	public function postSave(Request $request) {
@@ -38,6 +40,8 @@ class UserController extends AdminController {
 			$user->email         = $input['email'];
 			$user->password      = Hash::make('5823396');
 			$user->department_id = $input['department'];
+			$user->major_id      = $input['major'];
+			$user->grade         = $input['grade'];
 			$user->activated     = $input['activated'];
 
 			if ($user->save()) {
@@ -60,10 +64,11 @@ class UserController extends AdminController {
 
 	public function getEdit($id) {
 		$user        = User::find($id);
-		$departments = Department::orderBy('mc', 'asc')->get();
+		$departments = Department::orderBy('dw', 'asc')->get();
+		$majors      = Major::orderBy('zy', 'asc')->get();
 		$groups      = Group::orderBy('id', 'asc')->get();
 
-		return view('user.edit', ['title' => '编辑用户', 'user' => $user, 'departments' => $departments, 'groups' => $groups]);
+		return view('user.edit', ['title' => '编辑用户', 'user' => $user, 'departments' => $departments, 'majors' => $majors, 'groups' => $groups]);
 	}
 
 	public function putUpdate(Request $request, $id) {
@@ -78,6 +83,8 @@ class UserController extends AdminController {
 			$user                = User::find($id);
 			$user->email         = $input['email'];
 			$user->department_id = $input['department'];
+			$user->major_id      = isset($input['major']) ? $input['major'] : '';
+			$user->grade         = $input['grade'];
 			$user->activated     = $input['activated'];
 
 			if ($user->save()) {

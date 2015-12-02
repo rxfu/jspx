@@ -202,6 +202,7 @@
     <script src="{{ asset('js/bootstrap-typeahead.js') }}"></script>
     <script src="{{ asset('js/jquery.placeholder.js') }}"></script>
     <script src="{{ asset('js/jquery.stacktable.js') }}"></script>
+    <script src="{{ asset('js/jquery.chained.min.js') }}"></script>
     <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('js/plugins/dataTables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>

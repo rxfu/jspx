@@ -12,11 +12,23 @@
 						<fieldset>
 							<div class="form-group">
 								<label for="department" class="control-label">所在部门</label>
-								<select name="department" class="form-control">
+								<select name="department" id="department" class="form-control">
 									@foreach ($departments as $department)
 										<option value="{{ $department->dw }}"{{ $user->department_id == $department->dw ? ' selected' : '' }}>{{ $department->mc }}</option>
 									@endforeach
 								</select>
+							</div>
+							<div class="form-group">
+								<label for="major" class="control-label">所在专业</label>
+								<select name="major" id="major" class="form-control">
+									@foreach ($majors as $major)
+										<option value="{{ $major->zy }}" class="{{ $major->xy }}"{{ $user->major_id == $major->zy ? ' selected' : '' }}>{{ $major->mc }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="grade" class="control-label">所在年级</label>
+								<input type="text" name="grade" id="grade" class="form-control" placeholder="所在年级" value="{{ $user->grade }}">
 							</div>
 							<div class="form-group">
 								<label for="email" class="control-label">Email</label>

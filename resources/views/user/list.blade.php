@@ -12,6 +12,8 @@
 							<tr>
 								<th>用户名</th>
 								<th>所在部门</th>
+								<th>所在专业</th>
+								<th>所在年级</th>
 								<th>所属组</th>
 								<th>Email</th>
 								<th class="yesno">是否启用</th>
@@ -27,6 +29,8 @@
 							<tr>
 								<td>{{ $user->username }}</td>
 								<td>{{ $user->department->mc }}</td>
+								<td>{{ is_null($user->major) ? '' : $user->major->mc }}</td>
+								<td>{{ $user->grade }}</td>
 								<td>{{ $user->groups[0]->name }}</td>
 								<td>{{ $user->email }}</td>
 								<td>{{ $user->activated }}</td>

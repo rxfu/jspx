@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder {
 			'email'         => 'tester01@test.com',
 			'password'      => Hash::make('tester'),
 			'department_id' => '01',
-			'activated'     => '0',
+			'activated'     => '1',
 		));
 		$user->groups()->sync([$user->id]);
 
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder {
 			'email'         => 'tester02@test.com',
 			'password'      => Hash::make('tester'),
 			'department_id' => '01',
-			'activated'     => '0',
+			'activated'     => '1',
 		));
 		$user->groups()->sync([$user->id]);
 
@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder {
 			'email'         => 'tester03@test.com',
 			'password'      => Hash::make('tester'),
 			'department_id' => '20',
-			'activated'     => '0',
+			'activated'     => '1',
 		));
 		$user->groups()->sync([$user->id]);
 	}

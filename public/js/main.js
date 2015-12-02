@@ -43,4 +43,6 @@ $(document).ready(function() {
 				'permissions[]': permissions
 			});
 	});
+
+	$('#major').chained('#department');
 });

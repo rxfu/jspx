@@ -12,6 +12,14 @@
 							<td class="col-md-8 text-left">{{ $user->department->mc }}</td>
 						</tr>
 						<tr>
+							<th class="col-md-4 text-right">所在专业：</th>
+							<td class="col-md-8 text-left">{{ is_null($user->major) ? '' : $user->major->mc }}</td>
+						</tr>
+						<tr>
+							<th class="col-md-4 text-right">所在年级：</th>
+							<td class="col-md-8 text-left">{{ $user->grade }}</td>
+						</tr>
+						<tr>
 							<th class="col-md-4 text-right">Email：</th>
 							<td class="col-md-8 text-left">{{ $user->email }}</td>
 						</tr>

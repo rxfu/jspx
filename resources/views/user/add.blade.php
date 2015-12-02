@@ -18,12 +18,24 @@
 								<input type="text" name="email" id="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
 							</div>
 							<div class="form-group">
-								<label for="department" class="control-label">部门</label>
-								<select name="department" class="form-control">
+								<label for="department" class="control-label">所在部门</label>
+								<select name="department" id="department" class="form-control">
 									@foreach ($departments as $department)
 										<option value="{{ $department->dw }}"{{ old('department') == $department->dw ? ' selected' : '' }}>{{ $department->mc }}</option>
 									@endforeach
 								</select>
+							</div>
+							<div class="form-group">
+								<label for="major" class="control-label">所在专业</label>
+								<select name="major" id="major" class="form-control">
+									@foreach ($majors as $major)
+										<option value="{{ $major->zy }}" class="{{ $major->xy }}"{{ old('major') == $major->zy ? ' selected' : '' }}>{{ $major->mc }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="grade" class="control-label">所在年级</label>
+								<input type="text" name="grade" id="grade" class="form-control" placeholder="所在年级" value="{{ old('grade') }}">
 							</div>
 							<div class="form-group">
 								<label for="group" class="control-label">所属组</label>
