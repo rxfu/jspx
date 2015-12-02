@@ -30,7 +30,8 @@
 									<th>课程序号</th>
 									<th>课程名称</th>
 									<th>开课学院</th>
-									<th>任课教师</th>
+									<th>专业</th>
+									<th>年级</th>
 									<th>总分</th>
 								</tr>
 							</thead>
@@ -40,8 +41,9 @@
 										<td>{{ $result->kcxh }}</td>
 										<td>{{ $result->kcmc }}</td>
 										<td>{{ $result->xymc }}</td>
-										<td>{{ $result->jsxm }}</td>
-										<td>{{ $result->total }}</td>
+										<td>{{ $result->zymc }}</td>
+										<td>{{ $result->nj }}</td>
+										<td>{{ number_format($result->total, 2) }}</td>
 									</tr>
 								@endforeach
 							</tbody>

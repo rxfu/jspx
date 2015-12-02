@@ -42,7 +42,6 @@ class PfjgController extends AdminController {
 			})
 			->join('jx_zy', 'pk_kczy.zy', '=', 'jx_zy.zy')
 			->join('xt_department', 'pk_kczy.kkxy', '=', 'xt_department.dw')
-			->join('pk_js', 'pk_jxrw.jsgh', '=', 'pk_js.jsgh')
 			->leftJoin('px_pfjg', function ($join) {
 				$join->on('px_pfjg.jsgh', '=', 'pk_jxrw.jsgh')
 					->on('px_pfjg.kcxh', '=', 'pk_jxrw.kcxh')
@@ -51,9 +50,9 @@ class PfjgController extends AdminController {
 			})
 			->where('pk_jxrw.nd', '=', $year)
 			->where('pk_jxrw.xq', '=', $term)
-			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc', 'pk_js.jsgh', 'pk_js.xm as jsxm')
-			->addSelect(DB::raw('sum(t_px_pfjg.fz) as total'))
-			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc', 'pk_js.jsgh', 'pk_js.xm')
+			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc')
+			->addSelect(DB::raw('sum(t_px_pfjg.fz) / count(t_px_pfjg.jsgh) * count(distinct(t_px_pfjg.pjbz_id)) as total'))
+			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc')
 			->get();
 
 		return view('pfjg.statistics', ['title' => $title, 'results' => $results]);
