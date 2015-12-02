@@ -212,11 +212,15 @@ class PermissionTableSeeder extends Seeder {
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.statistics',
-			'name' => '查看评价统计表',
+			'name' => '查看全校统计表',
 		));
 		Permission::create(array(
-			'id'   => 'pfjg.compare',
-			'name' => '查看评价对比表',
+			'id'   => 'pfjg.departmentStatistics',
+			'name' => '查看本学院统计表',
+		));
+		Permission::create(array(
+			'id'   => 'pfjg.majorStatistics',
+			'name' => '查看本专业统计表',
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.exportMonitor',
@@ -224,7 +228,7 @@ class PermissionTableSeeder extends Seeder {
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.exportStatistics',
-			'name' => '导出统计数据',
+			'name' => '导出全校统计数据',
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.exportDepartmentStatistics',
@@ -232,7 +236,7 @@ class PermissionTableSeeder extends Seeder {
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.exportMajorStatistics',
-			'name' => '导出本学院本年级本专业统计数据',
+			'name' => '导出本专业统计数据',
 		));
 	}
 
