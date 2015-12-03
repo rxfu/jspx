@@ -3,6 +3,7 @@
 use App\Models\System;
 use App\Models\Term;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PfjgController extends AdminController {
 
@@ -25,6 +26,8 @@ class PfjgController extends AdminController {
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm as jsxm', 'pk_js.xy as xyh', 'xt_department.mc as xymc')
 			->addSelect(DB::raw('count(t_px_pfjg.pjbz_id) as count'))
 			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm', 'pk_js.xy', 'xt_department.mc')
+			->orderBy('pk_js.jsgh', 'asc')
+			->orderBy('count', 'asc')
 			->get();
 
 		return view('pfjg.monitor', ['title' => $title, 'results' => $results]);
@@ -56,6 +59,52 @@ class PfjgController extends AdminController {
 			->get();
 
 		return view('pfjg.statistics', ['title' => $title, 'results' => $results]);
+	}
+
+	public function getExportMonitor() {
+		$year = System::find('CJ_WEB_ND')->value;
+		$term = System::find('CJ_WEB_XQ')->value;
+
+		$results = DB::table('pk_jxrw')
+			->join('pk_js', 'pk_jxrw.jsgh', '=', 'pk_js.jsgh')
+			->join('xt_department', 'pk_js.xy', '=', 'xt_department.dw')
+			->leftJoin('px_pfjg', function ($join) {
+				$join->on('px_pfjg.jsgh', '=', 'pk_jxrw.jsgh')
+					->on('px_pfjg.kcxh', '=', 'pk_jxrw.kcxh')
+					->on('px_pfjg.nd', '=', 'pk_jxrw.nd')
+					->on('px_pfjg.xq', '=', 'pk_jxrw.xq');
+			})
+			->where('pk_jxrw.nd', '=', $year)
+			->where('pk_jxrw.xq', '=', $term)
+			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm as jsxm', 'pk_js.xy as xyh', 'xt_department.mc as xymc')
+			->addSelect(DB::raw('count(t_px_pfjg.pjbz_id) as count'))
+			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm', 'pk_js.xy', 'xt_department.mc')
+			->orderBy('pk_js.jsgh', 'asc')
+			->orderBy('count', 'asc')
+			->get();
+		$sheetName = $year . '~' . ($year + 1) . '学年度' . Term::find($term)->mc . '学期教师评学监控表';
+
+		$datas[0] = ['教师工号', '教师姓名', '所在学院', '课程序号', '已评数量'];
+		foreach ($results as $result) {
+			$row   = array();
+			$row[] = $result->jsgh;
+			$row[] = $result->jsxm;
+			$row[] = $result->xymc;
+			$row[] = $result->kcxh;
+			$row[] = $result->count;
+
+			$datas[] = $row;
+		}
+
+		Excel::create('export', function ($excel) use ($sheetName, $datas) {
+			$excel->setTitle('Guangxi Normal University Teacher Evaludate Students Monitor Report');
+			$excel->setCreator('Dean')->setCompany('Guangxi Normal University');
+
+			$excel->sheet($sheetName, function ($sheet) use ($datas) {
+				$sheet->setOrientation('landscape');
+				$sheet->fromArray($datas, null, 'A1', false, false);
+			});
+		})->export('xls');
 	}
 
 }

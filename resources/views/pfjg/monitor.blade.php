@@ -4,11 +4,9 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				@if (Auth::user()->groups[0]->permissions->contains('pfjg.exportMonitor'))
-					<div class="panel-heading">
-						<a href="{{ url('pfjg.exportMonitor') }}" title="导出监控数据(Excel格式)" class="btn btn-success" role="button">导出监控数据(Excel格式)</a>
-					</div>
-				@endif
+				<div class="panel-heading">
+					<a href="{{ url('pfjg/export-monitor') }}" title="导出监控数据(Excel格式)" class="btn btn-success" role="button">导出监控数据(Excel格式)</a>
+				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table id="monitor-table" class="table table-striped table-hover data-table">
