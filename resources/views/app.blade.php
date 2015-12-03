@@ -61,18 +61,16 @@
                             <li>
                                 <a href="{{ route('home') }}"><i class="fa fa-dashboard fa-fw"></i> 概况</a>
                             </li>
-                            @if ($user->groups[0]->permissions->contains('pfjg.statistics'))
-                                <li>
-                                    <a href="#"><i class="fa fa-database fa-fw"></i> 评分统计<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        @foreach ($periods as $period)
-                                            <li>
-                                                <a href="{{ url('pfjg/statistics', [$period['nd'], $period['xq']]) }}" title="评价统计表">{{ $period['nd'] . '~' . ($period['nd'] + 1) }}年度{{ $period['xqmc'] }}学期评价统计表</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endif
+                            <li>
+                                <a href="#"><i class="fa fa-database fa-fw"></i> 评分统计<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    @foreach ($periods as $period)
+                                        <li>
+                                            <a href="{{ url('pfjg/statistics', [$period['nd'], $period['xq']]) }}" title="评价统计表">{{ $period['nd'] . '~' . ($period['nd'] + 1) }}年度{{ $period['xqmc'] }}学期评价统计表</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
                             @if ($user->groups[0]->permissions->contains('pjzb.list') || $user->groups[0]->permissions->contains('pjbz.list') || $user->groups[0]->permissions->contains('pfdj.list') || $user->groups[0]->permissions->contains('pfjg.monitor'))
                                 <li>
                                     <a href="#"><i class="fa fa-table fa-fw"></i> 评分管理<span class="fa arrow"></span></a>

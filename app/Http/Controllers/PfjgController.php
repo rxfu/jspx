@@ -2,6 +2,7 @@
 
 use App\Models\System;
 use App\Models\Term;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -34,7 +35,15 @@ class PfjgController extends AdminController {
 	}
 
 	public function getStatistics($year, $term) {
-		$title = $year . '~' . ($year + 1) . '年度' . Term::find($term)->mc . '学期教师评学统计表';
+		$college = $major = $grade = '';
+		if (Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
+			$college = Auth::user()->department->mc;
+		} elseif (Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
+			$college = Auth::user()->department->mc;
+			$major   = Auth::user()->major->mc;
+			$grade   = Auth::user()->grade;
+		}
+		$title = $year . '~' . ($year + 1) . '年度' . Term::find($term)->mc . '学期' . $college . $major . '专业' . $grade . '级教师评学统计表';
 
 		$results = DB::table('pk_jxrw')
 			->join('jx_kc', 'pk_jxrw.kch', '=', 'jx_kc.kch')
@@ -53,6 +62,15 @@ class PfjgController extends AdminController {
 			})
 			->where('pk_jxrw.nd', '=', $year)
 			->where('pk_jxrw.xq', '=', $term)
+			->where(function ($query) {
+				if (Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
+					$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id);
+				} elseif (Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
+					$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id)
+						->where('pk_kczy.zy', '=', Auth::user()->major_id)
+						->where('pk_kczy.nj', '=', Auth::user()->grade);
+				}
+			})
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc')
 			->addSelect(DB::raw('sum(t_px_pfjg.fz) / count(t_px_pfjg.jsgh) * count(distinct(t_px_pfjg.pjbz_id)) as total'))
 			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc')
@@ -126,6 +144,15 @@ class PfjgController extends AdminController {
 			})
 			->where('pk_jxrw.nd', '=', $year)
 			->where('pk_jxrw.xq', '=', $term)
+			->where(function ($query) {
+				if (Auth::user()->groups[0]->permissions->contains('pfjg.exportDepartmentStatistics')) {
+					$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id);
+				} elseif (Auth::user()->groups[0]->permissions->contains('pfjg.exportMajorStatistics')) {
+					$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id)
+						->where('pk_kczy.zy', '=', Auth::user()->major_id)
+						->where('pk_kczy.nj', '=', Auth::user()->grade);
+				}
+			})
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc')
 			->addSelect(DB::raw('sum(t_px_pfjg.fz) / count(t_px_pfjg.jsgh) * count(distinct(t_px_pfjg.pjbz_id)) as total'))
 			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc')
