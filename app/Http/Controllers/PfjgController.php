@@ -35,7 +35,6 @@ class PfjgController extends AdminController {
 	}
 
 	public function getStatistics($year, $term) {
-		$college = $major = $grade = '';
 		if (Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
 			$college = Auth::user()->department->mc;
 		} elseif (Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
@@ -43,7 +42,11 @@ class PfjgController extends AdminController {
 			$major   = Auth::user()->major->mc;
 			$grade   = Auth::user()->grade;
 		}
-		$title = $year . '~' . ($year + 1) . '年度' . Term::find($term)->mc . '学期' . $college . $major . '专业' . $grade . '级教师评学统计表';
+		$title = $year . '~' . ($year + 1) . '年度' . Term::find($term)->mc . '学期';
+		$title .= isset($college) ? $college : '';
+		$title .= isset($major) ? $major . '专业' : '';
+		$title .= isset($grade) ? $grade . '级' : '';
+		$title .= '教师评学统计表';
 
 		$results = DB::table('pk_jxrw')
 			->join('jx_kc', 'pk_jxrw.kch', '=', 'jx_kc.kch')
