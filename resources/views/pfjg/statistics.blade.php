@@ -7,19 +7,9 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-md-6">{{ $title }}</div>
-						@if (Auth::user()->groups[0]->permissions->contains('pfjg.exportStatistics'))
-							<div class="col-md-6 text-right">
-							<a href="{{ url('pfjg.exportStatistics') }}" title="导出统计数据(Excel格式)" class="btn btn-success" role="button">导出统计数据(Excel格式)</a>
-							</div>
-						@elseif (Auth::user()->groups[0]->permissions->contains('pfjg.exportDepartmentStatistics'))
-							<div class="col-md-6 text-right">
-							<a href="{{ url('pfjg.exportDepartmentStatistics') }}" title="导出本学院统计数据(Excel格式)" class="btn btn-success" role="button">导出本学院统计数据(Excel格式)</a>
-							</div>
-						@elseif (Auth::user()->groups[0]->permissions->contains('pfjg.exportMajorStatistics'))
-							<div class="col-md-6 text-right">
-							<a href="{{ url('pfjg.exportMajorStatistics') }}" title="导出本学院本年级本专业统计数据(Excel格式)" class="btn btn-success" role="button">导出本学院本年级本专业统计数据(Excel格式)</a>
-							</div>
-						@endif
+						<div class="col-md-6 text-right">
+						<a href="{{ url('pfjg/export-statistics', [$year, $term]) }}" title="导出统计数据(Excel格式)" class="btn btn-success" role="button">导出统计数据(Excel格式)</a>
+						</div>
 					</div>
 				</div>
 				<div class="panel-body">

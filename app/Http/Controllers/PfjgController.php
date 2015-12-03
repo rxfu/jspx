@@ -56,9 +56,10 @@ class PfjgController extends AdminController {
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc')
 			->addSelect(DB::raw('sum(t_px_pfjg.fz) / count(t_px_pfjg.jsgh) * count(distinct(t_px_pfjg.pjbz_id)) as total'))
 			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc')
+			->orderBy('pk_jxrw.kcxh')
 			->get();
 
-		return view('pfjg.statistics', ['title' => $title, 'results' => $results]);
+		return view('pfjg.statistics', ['title' => $title, 'year' => $year, 'term' => $term, 'results' => $results]);
 	}
 
 	public function getExportMonitor() {
@@ -98,6 +99,55 @@ class PfjgController extends AdminController {
 
 		Excel::create('export', function ($excel) use ($sheetName, $datas) {
 			$excel->setTitle('Guangxi Normal University Teacher Evaludate Students Monitor Report');
+			$excel->setCreator('Dean')->setCompany('Guangxi Normal University');
+
+			$excel->sheet($sheetName, function ($sheet) use ($datas) {
+				$sheet->setOrientation('landscape');
+				$sheet->fromArray($datas, null, 'A1', false, false);
+			});
+		})->export('xls');
+	}
+
+	public function getExportStatistics($year, $term) {
+		$results = DB::table('pk_jxrw')
+			->join('jx_kc', 'pk_jxrw.kch', '=', 'jx_kc.kch')
+			->join('pk_kczy', function ($join) {
+				$join->on('pk_jxrw.nd', '=', 'pk_kczy.nd')
+					->on('pk_jxrw.xq', '=', 'pk_kczy.xq')
+					->on('pk_jxrw.kcxh', '=', 'pk_kczy.kcxh');
+			})
+			->join('jx_zy', 'pk_kczy.zy', '=', 'jx_zy.zy')
+			->join('xt_department', 'pk_kczy.kkxy', '=', 'xt_department.dw')
+			->leftJoin('px_pfjg', function ($join) {
+				$join->on('px_pfjg.jsgh', '=', 'pk_jxrw.jsgh')
+					->on('px_pfjg.kcxh', '=', 'pk_jxrw.kcxh')
+					->on('px_pfjg.nd', '=', 'pk_jxrw.nd')
+					->on('px_pfjg.xq', '=', 'pk_jxrw.xq');
+			})
+			->where('pk_jxrw.nd', '=', $year)
+			->where('pk_jxrw.xq', '=', $term)
+			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc')
+			->addSelect(DB::raw('sum(t_px_pfjg.fz) / count(t_px_pfjg.jsgh) * count(distinct(t_px_pfjg.pjbz_id)) as total'))
+			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc', 'pk_kczy.kkxy', 'xt_department.mc')
+			->orderBy('pk_jxrw.kcxh')
+			->get();
+		$sheetName = $year . '~' . ($year + 1) . '学年度' . Term::find($term)->mc . '学期教师评学统计表';
+
+		$datas[0] = ['课程序号', '课程名称', '开课学院', '专业', '年级', '总分'];
+		foreach ($results as $result) {
+			$row   = array();
+			$row[] = $result->kcxh;
+			$row[] = $result->kcmc;
+			$row[] = $result->xymc;
+			$row[] = $result->zymc;
+			$row[] = $result->nj;
+			$row[] = number_format($result->total, 2);
+
+			$datas[] = $row;
+		}
+
+		Excel::create('export', function ($excel) use ($sheetName, $datas) {
+			$excel->setTitle('Guangxi Normal University Teacher Evaludate Students Statistics Report');
 			$excel->setCreator('Dean')->setCompany('Guangxi Normal University');
 
 			$excel->sheet($sheetName, function ($sheet) use ($datas) {
