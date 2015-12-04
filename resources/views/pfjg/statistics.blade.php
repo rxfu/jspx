@@ -14,7 +14,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table id="statistics-table" class="table table-striped table-bordered table-hover data-table">
+						<table id="statistics-table" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>课程序号</th>
@@ -25,6 +25,16 @@
 									<th>总分</th>
 								</tr>
 							</thead>
+							<tfoot>
+								<tr>
+									<td>课程序号</td>
+									<td>课程名称</td>
+									<td>开课学院</td>
+									<td>专业</td>
+									<td>年级</td>
+									<td>总分</td>
+								</tr>
+							</tfoot>
 							<tbody>
 								@foreach ($results as $result)
 									<tr>

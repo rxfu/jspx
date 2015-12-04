@@ -7,7 +7,7 @@ $.getJsUrl = function() {
 $(document).ready(function() {
 	$('a[href="' + $(location).attr('href') + '"]').parent('li').toggleClass('active').children('ul').collapse('toggle');
 
-	$(".data-table").dataTable({
+	$(".data-table").DataTable({
 		"lengthMenu": [
 			[10, 25, 50, -1],
 			[10, 25, 50, "全部"]
@@ -45,4 +45,33 @@ $(document).ready(function() {
 	});
 
 	$('#major').chained('#department');
+
+	$('#statistics-table').DataTable({
+		"lengthMenu": [
+			[10, 25, 50, -1],
+			[10, 25, 50, "全部"]
+		],
+		"pagingType": "full_numbers",
+		"language": {
+			"url": $.getJsUrl() + "plugins/dataTables/i18n/zh_cn.lang"
+		},
+		initComplete: function() {
+			this.api().columns().every(function() {
+				var column = this;
+				var select = $('<select><option value=""></option></select>')
+					.appendTo($(column.footer()).empty())
+					.on('change', function() {
+						var val = $.fn.dataTable.util.escapeRegex(
+							$(this).val()
+						);
+
+						column.search(val ? '^' + val + '$' : '', true, false).draw();
+					});
+
+				column.data().unique().sort().each(function(d, j) {
+					select.append('<option value="' + d + '">' + d + '</option>')
+				});
+			});
+		}
+	});
 });

@@ -191,7 +191,7 @@
     	</footer>
     </div>
 	<!-- Load JS here for greater good -->
-    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui-1.10.4.custom.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-paginator.js') }}"></script>
@@ -202,8 +202,8 @@
     <script src="{{ asset('js/jquery.stacktable.js') }}"></script>
     <script src="{{ asset('js/jquery.chained.min.js') }}"></script>
     <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('js/plugins/dataTables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
     <script src="{{ asset('js/plugins/morris/morris.js') }}"></script>
     <script src="{{ asset('js/sb-admin.js') }}"></script>
