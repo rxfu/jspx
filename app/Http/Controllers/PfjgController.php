@@ -35,12 +35,18 @@ class PfjgController extends AdminController {
 	}
 
 	public function getStatistics($year, $term) {
-		if (Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
-			$college = Auth::user()->department->mc;
-		} elseif (Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
-			$college = Auth::user()->department->mc;
-			$major   = Auth::user()->major->mc;
-			$grade   = Auth::user()->grade;
+		if (!Auth::user()->groups[0]->permissions->contains('pfjg.statistics')) {
+			if (!Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
+				if (!Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
+					return redirect()->guest('auth/login');
+				} else {
+					$college = Auth::user()->department->mc;
+					$major   = Auth::user()->major->mc;
+					$grade   = Auth::user()->grade;
+				}
+			} else {
+				$college = Auth::user()->department->mc;
+			}
 		}
 		$title = $year . '~' . ($year + 1) . '年度' . Term::find($term)->mc . '学期';
 		$title .= isset($college) ? $college : '';
@@ -66,12 +72,18 @@ class PfjgController extends AdminController {
 			->where('pk_jxrw.nd', '=', $year)
 			->where('pk_jxrw.xq', '=', $term)
 			->where(function ($query) {
-				if (Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
-					$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id);
-				} elseif (Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
-					$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id)
-						->where('pk_kczy.zy', '=', Auth::user()->major_id)
-						->where('pk_kczy.nj', '=', Auth::user()->grade);
+				if (!Auth::user()->groups[0]->permissions->contains('pfjg.statistics')) {
+					if (!Auth::user()->groups[0]->permissions->contains('pfjg.departmentStatistics')) {
+						if (!Auth::user()->groups[0]->permissions->contains('pfjg.majorStatistics')) {
+							return redirect()->guest('auth/login');
+						} else {
+							$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id)
+								->where('pk_kczy.zy', '=', Auth::user()->major_id)
+								->where('pk_kczy.nj', '=', Auth::user()->grade);
+						}
+					} else {
+						$query->where('pk_kczy.kkxy', '=', Auth::user()->department_id);
+					}
 				}
 			})
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'jx_kc.kcmc', 'pk_kczy.nj', 'pk_kczy.zy', 'jx_zy.mc as zymc', 'pk_kczy.kkxy', 'xt_department.mc as xymc')
