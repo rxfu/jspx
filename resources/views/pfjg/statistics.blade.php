@@ -22,7 +22,7 @@
 									<th>开课学院</th>
 									<th>专业</th>
 									<th>年级</th>
-									<th>总分</th>
+									<th>得分</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -32,7 +32,7 @@
 									<td>开课学院</td>
 									<td>专业</td>
 									<td>年级</td>
-									<td>总分</td>
+									<td>得分</td>
 								</tr>
 							</tfoot>
 							<tbody>
