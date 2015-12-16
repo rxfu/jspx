@@ -64,11 +64,26 @@
                             <li>
                                 <a href="#"><i class="fa fa-database fa-fw"></i> 评分统计<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    @foreach ($periods as $period)
-                                        <li>
-                                            <a href="{{ url('pfjg/statistics', [$period['nd'], $period['xq']]) }}" title="评价统计表">{{ $period['nd'] . '~' . ($period['nd'] + 1) }}年度{{ $period['xqmc'] }}学期评价统计表</a>
-                                        </li>
-                                    @endforeach
+                                    <li>
+                                        <a href="#"><i class="fa fa-tasks fa-fw"></i> 按课程统计<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            @foreach ($periods as $period)
+                                                <li>
+                                                    <a href="{{ url('pfjg/statistics', [$period['nd'], $period['xq']]) }}" title="评价统计表">{{ $period['nd'] . '~' . ($period['nd'] + 1) }}年度{{ $period['xqmc'] }}学期统计表</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-book fa-fw"></i> 按专业统计<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            @foreach ($periods as $period)
+                                                <li>
+                                                    <a href="{{ url('pfjg/statistics-by-major', [$period['nd'], $period['xq']]) }}" title="评价统计表">{{ $period['nd'] . '~' . ($period['nd'] + 1) }}年度{{ $period['xqmc'] }}学期统计表</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             @if ($user->groups[0]->permissions->contains('pjzb.list') || $user->groups[0]->permissions->contains('pjbz.list') || $user->groups[0]->permissions->contains('pfdj.list') || $user->groups[0]->permissions->contains('pfjg.monitor'))
