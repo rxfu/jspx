@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Pfdj;
 use App\Models\System;
 use App\Models\Term;
 use Illuminate\Support\Facades\Auth;
@@ -135,6 +136,15 @@ class PfjgController extends AdminController {
 		$title .= (!isset($grade) || is_null($grade)) ? '' : $grade . '级';
 		$title .= '教师评学统计表';
 		$results = $this->retrieveStatisticsResults($year, $term);
+
+		foreach ($results as &$result) {
+			if (isset($result->total)) {
+				$grade = Pfdj::where('zdfz', '<=', $result->total)
+					->where('zgfz', '>=', $result->total)
+					->first();
+				$result->djmc = $grade->mc;
+			}
+		}
 
 		return view('pfjg.statistics', ['title' => $title, 'year' => $year, 'term' => $term, 'results' => $results]);
 	}
