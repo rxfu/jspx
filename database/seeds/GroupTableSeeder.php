@@ -12,6 +12,7 @@ class GroupTableSeeder extends Seeder {
 			'name' => '超级管理员',
 		));
 		$group->permissions()->sync([
+			'setting.edit',
 			'user.add', 'user.edit', 'user.show', 'user.list', 'user.save', 'user.update', 'user.delete', 'user.reset', 'user.change', 'user.saveChange', 'user.profile',
 			'group.add', 'group.edit', 'group.show', 'group.list', 'group.save', 'group.update', 'group.delete', 'group.grant', 'group.saveGrant',
 			'permission.add', 'permission.edit', 'permission.show', 'permission.list', 'permission.save', 'permission.update', 'permission.delete',

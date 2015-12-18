@@ -8,6 +8,11 @@ class PermissionTableSeeder extends Seeder {
 	public function run() {
 		DB::statement('TRUNCATE TABLE t_px_permission CASCADE');
 
+		Permission::create([
+			'id'   => 'setting.edit',
+			'name' => '修改设置',
+		]);
+
 		Permission::create(array(
 			'id'   => 'user.add',
 			'name' => '创建用户',
