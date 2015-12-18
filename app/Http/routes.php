@@ -27,4 +27,5 @@ Route::controllers([
 	'pjbz'       => 'PjbzController',
 	'pfdj'       => 'PfdjController',
 	'pfjg'       => 'PfjgController',
+	'setting'    => 'SettingController',
 ]);

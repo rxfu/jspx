@@ -169,6 +169,18 @@
                                     </ul>
                                 </li>
                             @endif
+                            @if ($user->groups[0]->permissions->contains('setting.edit'))
+                                <li>
+                                    <a href="#"><i class="fa fa-gear fa-fw"></i> 系统管理<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        @if ($user->groups[0]->permissions->contains('setting.edit'))
+                                            <li>
+                                                <a href="{{ url('setting/edit') }}">系统设置</a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </nav>
