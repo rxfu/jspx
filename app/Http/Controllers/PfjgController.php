@@ -138,11 +138,13 @@ class PfjgController extends AdminController {
 		$results = $this->retrieveStatisticsResults($year, $term);
 
 		foreach ($results as &$result) {
-			if (isset($result->total)) {
+			if (!is_null($result->total)) {
 				$grade = Pfdj::where('zdfz', '<=', $result->total)
 					->where('zgfz', '>=', $result->total)
 					->first();
 				$result->djmc = $grade->mc;
+			} else {
+				$result->djmc = null;
 			}
 		}
 
@@ -169,6 +171,17 @@ class PfjgController extends AdminController {
 		$title .= (!isset($grade) || is_null($grade)) ? '' : $grade . '级';
 		$title .= '教师评学分专业统计表';
 		$results = $this->retrieveStatisticsResultsByMajor($year, $term);
+
+		foreach ($results as &$result) {
+			if (!is_null($result->total)) {
+				$grade = Pfdj::where('zdfz', '<=', $result->total)
+					->where('zgfz', '>=', $result->total)
+					->first();
+				$result->djmc = $grade->mc;
+			} else {
+				$result->djmc = null;
+			}
+		}
 
 		return view('pfjg.statistics-major', ['title' => $title, 'year' => $year, 'term' => $term, 'results' => $results]);
 	}
@@ -206,7 +219,7 @@ class PfjgController extends AdminController {
 		$results   = $this->retrieveStatisticsResults($year, $term);
 		$sheetName = $year . '~' . ($year + 1) . '学年度' . Term::find($term)->mc . '学期教师评学统计表';
 
-		$datas[0] = ['课程序号', '课程名称', '开课学院', '专业', '年级', '总分'];
+		$datas[0] = ['课程序号', '课程名称', '开课学院', '专业', '年级', '总分', '等级'];
 		foreach ($results as $result) {
 			$row   = array();
 			$row[] = $result->kcxh;
@@ -215,6 +228,15 @@ class PfjgController extends AdminController {
 			$row[] = $result->zymc;
 			$row[] = $result->nj;
 			$row[] = number_format($result->total, 2);
+
+			if (!is_null($result->total)) {
+				$grade = Pfdj::where('zdfz', '<=', $result->total)
+					->where('zgfz', '>=', $result->total)
+					->first();
+				$row[] = $grade->mc;
+			} else {
+				$row[] = null;
+			}
 
 			$datas[] = $row;
 		}
@@ -234,12 +256,21 @@ class PfjgController extends AdminController {
 		$results   = $this->retrieveStatisticsResultsByMajor($year, $term);
 		$sheetName = $year . '~' . ($year + 1) . '学年度' . Term::find($term)->mc . '学期教师评学分专业统计表';
 
-		$datas[0] = ['专业', '年级', '总分'];
+		$datas[0] = ['专业', '年级', '总分', '等级'];
 		foreach ($results as $result) {
 			$row   = array();
 			$row[] = $result->zymc;
 			$row[] = $result->nj;
 			$row[] = number_format($result->total, 2);
+
+			if (!is_null($result->total)) {
+				$grade = Pfdj::where('zdfz', '<=', $result->total)
+					->where('zgfz', '>=', $result->total)
+					->first();
+				$row[] = $grade->mc;
+			} else {
+				$row[] = null;
+			}
 
 			$datas[] = $row;
 		}

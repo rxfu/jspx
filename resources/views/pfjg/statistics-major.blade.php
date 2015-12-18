@@ -20,6 +20,7 @@
 									<th>年级</th>
 									<th>专业</th>
 									<th>得分</th>
+									<th>等级</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -27,6 +28,7 @@
 									<td>年级</td>
 									<td>专业</td>
 									<td>得分</td>
+									<td>等级</td>
 								</tr>
 							</tfoot>
 							<tbody>
@@ -35,6 +37,7 @@
 										<td>{{ $result->nj }}</td>
 										<td>{{ $result->zymc }}</td>
 										<td>{{ number_format($result->total, 2) }}</td>
+										<td>{{ $result->djmc }}</td>
 									</tr>
 								@endforeach
 							</tbody>
