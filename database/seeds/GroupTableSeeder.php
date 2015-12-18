@@ -29,7 +29,7 @@ class GroupTableSeeder extends Seeder {
 		$group = Group::create(array(
 			'name' => '教学秘书',
 		));
-		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.departmentStatistics', 'pfjg.exportDepartmentStatistics']);
+		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.monitor', 'pfjg.departmentStatistics', 'pfjg.exportDepartmentStatistics']);
 
 		$group = Group::create(array(
 			'name' => '学校领导',
