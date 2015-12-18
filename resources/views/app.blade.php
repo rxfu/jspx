@@ -86,7 +86,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            @if ($user->groups[0]->permissions->contains('pjzb.list') || $user->groups[0]->permissions->contains('pjbz.list') || $user->groups[0]->permissions->contains('pfdj.list') || $user->groups[0]->permissions->contains('pfjg.monitor'))
+                            @if ($user->groups[0]->permissions->contains('pjzb.list') || $user->groups[0]->permissions->contains('pjbz.list') || $user->groups[0]->permissions->contains('pfdj.list') || $user->groups[0]->permissions->contains('pfjg.monitor') || $user->groups[0]->permissions->contains('pfjg.departmentMonitor'))
                                 <li>
                                     <a href="#"><i class="fa fa-table fa-fw"></i> 评分管理<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -105,7 +105,7 @@
                                                 <a href="{{ url('pfdj/list') }}">评分等级管理</a>
                                             </li>
                                         @endif
-                                        @if ($user->groups[0]->permissions->contains('pfjg.monitor'))
+                                        @if ($user->groups[0]->permissions->contains('pfjg.monitor') || $user->groups[0]->permissions->contains('pfjg.departmentMonitor'))
                                             <li>
                                                 <a href="{{ url('pfjg/monitor') }}">评分监控</a>
                                             </li>

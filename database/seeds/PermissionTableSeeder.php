@@ -208,7 +208,11 @@ class PermissionTableSeeder extends Seeder {
 
 		Permission::create(array(
 			'id'   => 'pfjg.monitor',
-			'name' => '评价监控',
+			'name' => '全校评价监控',
+		));
+		Permission::create(array(
+			'id'   => 'pfjg.departmentMonitor',
+			'name' => '本学院评价监控',
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.statistics',
@@ -224,7 +228,11 @@ class PermissionTableSeeder extends Seeder {
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.exportMonitor',
-			'name' => '导出监控数据',
+			'name' => '导出全校监控数据',
+		));
+		Permission::create(array(
+			'id'   => 'pfjg.exportDepartmentMonitor',
+			'name' => '导出本学院监控数据',
 		));
 		Permission::create(array(
 			'id'   => 'pfjg.exportStatistics',

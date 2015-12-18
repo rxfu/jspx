@@ -21,6 +21,15 @@ class PfjgController extends AdminController {
 			})
 			->where('pk_jxrw.nd', '=', $year)
 			->where('pk_jxrw.xq', '=', $term)
+			->where(function ($query) {
+				if (!Auth::user()->groups[0]->permissions->contains('pfjg.monitor')) {
+					if (!Auth::user()->groups[0]->permissions->contains('pfjg.departmentMonitor')) {
+						return redirect()->guest('auth/login');
+					} else {
+						$query->where('pk_js.xy', '=', Auth::user()->department_id);
+					}
+				}
+			})
 			->select('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm as jsxm', 'pk_js.xy as xyh', 'xt_department.mc as xymc')
 			->addSelect(DB::raw('count(t_px_pfjg.pjbz_id) as count'))
 			->groupBy('pk_jxrw.nd', 'pk_jxrw.xq', 'pk_jxrw.kcxh', 'pk_js.jsgh', 'pk_js.xm', 'pk_js.xy', 'xt_department.mc')

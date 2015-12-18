@@ -18,7 +18,7 @@ class GroupTableSeeder extends Seeder {
 			'pjzb.add', 'pjzb.edit', 'pjzb.show', 'pjzb.list', 'pjzb.save', 'pjzb.update', 'pjzb.delete',
 			'pjbz.add', 'pjbz.edit', 'pjbz.show', 'pjbz.list', 'pjbz.save', 'pjbz.update', 'pjbz.delete',
 			'pfdj.add', 'pfdj.edit', 'pfdj.show', 'pfdj.list', 'pfdj.save', 'pfdj.update', 'pfdj.delete',
-			'pfjg.monitor', 'pfjg.statistics', 'pfjg.departmentStatistics', 'pfjg.majorStatistics', 'pfjg.exportMonitor', 'pfjg.exportStatistics', 'pfjg.exportDepartmentStatistics', 'pfjg.exportMajorStatistics',
+			'pfjg.monitor', 'pfjg.departmentMonitor', 'pfjg.statistics', 'pfjg.departmentStatistics', 'pfjg.majorStatistics', 'pfjg.exportMonitor', 'pfjg.exportDepartmentMonitor', 'pfjg.exportStatistics', 'pfjg.exportDepartmentStatistics', 'pfjg.exportMajorStatistics',
 		]);
 
 		$group = Group::create(array(
@@ -29,7 +29,7 @@ class GroupTableSeeder extends Seeder {
 		$group = Group::create(array(
 			'name' => '教学秘书',
 		));
-		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.monitor', 'pfjg.departmentStatistics', 'pfjg.exportDepartmentStatistics']);
+		$group->permissions()->sync(['user.change', 'user.saveChange', 'user.profile', 'pfjg.departmentMonitor', 'pfjg.exportDepartmentMonitor', 'pfjg.departmentStatistics', 'pfjg.exportDepartmentStatistics']);
 
 		$group = Group::create(array(
 			'name' => '学校领导',
