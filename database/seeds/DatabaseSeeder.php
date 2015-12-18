@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder {
 	public function run() {
 		Model::unguard();
 
+		$this->call('SettingTableSeeder');
 		$this->call('PermissionTableSeeder');
 		$this->call('GroupTableSeeder');
 		$this->call('UserTableSeeder');
