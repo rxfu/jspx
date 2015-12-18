@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use Illuminate\Http\Request;
 
 class SettingController extends AdminController {
 
@@ -10,8 +11,8 @@ class SettingController extends AdminController {
 	 * @param int     $id
 	 * @return Response
 	 */
-	public function getEdit($id) {
-		$setting = Setting::find($id);
+	public function getEdit() {
+		$setting = Setting::find(1);
 
 		return view('setting.edit', ['title' => '系统设置', 'setting' => $setting]);
 	}

@@ -16,7 +16,7 @@
 									<input type="radio" name="is_open" id="is_open" value="1"{{ ($setting->is_open == 1) ? ' checked' : ''}}>&nbsp;开启
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="is_open" id="is_open" value="0"{{ ($setting->activated == 0) ? ' checked' : ''}}>&nbsp;关闭
+									<input type="radio" name="is_open" id="is_open" value="0"{{ ($setting->is_open == 0) ? ' checked' : ''}}>&nbsp;关闭
 								</label>
 							</div>
 							<button type="submit" class="btn btn-lg btn-success btn-block">设置</button>
