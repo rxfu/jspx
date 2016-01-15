@@ -15,7 +15,7 @@
 							</div>
 							<div class="form-group">
 								<label for="email" class="control-label">Email</label>
-								<input type="text" name="email" id="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
+								<input type="text" name="email" id="email" class="form-control" placeholder="Email" value="{{ str_random(10) }}@gxnu.edu">
 							</div>
 							<div class="form-group">
 								<label for="department" class="control-label">所在部门</label>
