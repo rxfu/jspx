@@ -148,8 +148,8 @@ class PfjgController extends AdminController {
 
 		foreach ($results as &$result) {
 			if (!is_null($result->total)) {
-				$result->djmc = Pfdj::where('zdfz', '<=', $result->total)
-					->where('zgfz', '>=', $result->total)
+				$result->djmc = Pfdj::where('zdfz', '<=', floor($result->total))
+					->where('zgfz', '>=', floor($result->total))
 					->first()->mc;
 			} else {
 				$result->djmc = null;
@@ -182,8 +182,8 @@ class PfjgController extends AdminController {
 
 		foreach ($results as &$result) {
 			if (!is_null($result->total)) {
-				$result->djmc = Pfdj::where('zdfz', '<=', $result->total)
-					->where('zgfz', '>=', $result->total)
+				$result->djmc = Pfdj::where('zdfz', '<=', floor($result->total))
+					->where('zgfz', '>=', floor($result->total))
 					->first()->mc;
 			} else {
 				$result->djmc = null;
@@ -237,8 +237,8 @@ class PfjgController extends AdminController {
 			$row[] = number_format($result->total, 2);
 
 			if (!is_null($result->total)) {
-				$row[] = Pfdj::where('zdfz', '<=', $result->total)
-					->where('zgfz', '>=', $result->total)
+				$row[] = Pfdj::where('zdfz', '<=', floor($result->total))
+					->where('zgfz', '>=', floor($result->total))
 					->first()->mc;
 			} else {
 				$row[] = null;
@@ -270,8 +270,8 @@ class PfjgController extends AdminController {
 			$row[] = number_format($result->total, 2);
 
 			if (!is_null($result->total)) {
-				$row[] = Pfdj::where('zdfz', '<=', $result->total)
-					->where('zgfz', '>=', $result->total)
+				$row[] = Pfdj::where('zdfz', '<=', floor($result->total))
+					->where('zgfz', '>=', floor($result->total))
 					->first()->mc;
 			} else {
 				$row[] = null;
